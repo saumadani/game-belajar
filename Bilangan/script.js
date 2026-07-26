@@ -5,4 +5,9 @@ function keluarAplikasi() {
     // Fallback jika window.close() diblokir oleh kebijakan keamanan browser
     alert("Silakan tutup tab atau aplikasi browser Anda untuk keluar.");
   }
+
 }
+
+  document.getElementById("btn-home").addEventListener("click", () => {
+    window.location.href = "../index.html";
+});
