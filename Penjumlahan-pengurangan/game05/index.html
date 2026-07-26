@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perjalanan Angka - Number Line Adventure</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Tombol Kembali yang Sudah Terisolasi Full Style -->
+<a href="../index.html" style="
+  position: fixed !important;
+  top: 15px !important;
+  left: 15px !important;
+  z-index: 999999 !important;
+  background-color: #ff4757 !important;
+  color: #ffffff !important;
+  padding: 10px 18px !important;
+  border-radius: 25px !important;
+  text-decoration: none !important;
+  font-family: 'Comic Sans MS', 'Fredoka', sans-serif !important;
+  font-weight: bold !important;
+  font-size: 14px !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+">🏠 Kembali ke Menu</a>
+
+    <div id="app-container">
+
+        <!-- ==========================================================================
+             1. SCREEN: MAIN MENU
+             ========================================================================== -->
+        <div id="screen-menu" class="screen active">
+            <div class="menu-header">
+                <h1 class="main-title">PERJALANAN ANGKA 🐰</h1>
+                <div class="sub-title">Petualangan Garis Bilangan</div>
+            </div>
+
+            <div class="hero-illustration">🏃‍♂️ ➡️ 🔟 ⬅️ 🐇</div>
+
+            <div class="button-group">
+                <button id="btn-start" class="btn btn-primary">
+                    <span>▶️</span> MULAI BERMAIN
+                </button>
+                <button id="btn-instructions" class="btn btn-secondary">
+                    <span>📖</span> PETUNJUK
+                </button>
+                <button id="btn-about" class="btn btn-info">
+                    <span>ℹ️</span> TENTANG GAME
+                </button>
+            </div>
+        </div>
+
+        <!-- ==========================================================================
+             2. SCREEN: PETUNJUK
+             ========================================================================== -->
+        <div id="screen-instructions" class="screen">
+            <h2 class="screen-title">CARA BERMAIN 💡</h2>
+            
+            <div class="card instruction-card">
+                <div class="step-item">
+                    <span class="step-num">1</span>
+                    <p>Lihat posisi awal <strong>Kelinci 🐇</strong> pada Garis Bilangan.</p>
+                </div>
+                <div class="step-item">
+                    <span class="step-num">2</span>
+                    <p>Jika <strong>HITUNG MAJU (+)</strong>, ketuk tombol <strong>LOMPAT MAJU ➡️</strong></p>
+                </div>
+                <div class="step-item">
+                    <span class="step-num">3</span>
+                    <p>Jika <strong>HITUNG MUNDUR (-)</strong>, ketuk tombol <strong>LOMPAT MUNDUR ⬅️</strong></p>
+                </div>
+                <div class="step-item">
+                    <span class="step-num">4</span>
+                    <p>Pilih angka tempat Kelinci hinggap sebagai jawaban! ⭐</p>
+                </div>
+            </div>
+
+            <button class="btn btn-primary btn-home">🏠 KEMBALI KE MENU</button>
+        </div>
+
+        <!-- ==========================================================================
+             3. SCREEN: TENTANG
+             ========================================================================== -->
+        <div id="screen-about" class="screen">
+            <h2 class="screen-title">TENTANG GAME ℹ️</h2>
+            
+            <div class="card info-card">
+                <h3>Perjalanan Angka</h3>
+                <p><strong>Materi:</strong> Menghitung Maju & Mundur pada Garis Bilangan</p>
+                <p><strong>Target:</strong> Siswa Kelas 4 SDLB (Anak Tuli / ABK)</p>
+                <p>Dirancang menggunakan interaksi visual lompatan lintasan (jump arc) untuk mempermudah anak memahami arah hitung maju dan mundur secara konkret.</p>
+            </div>
+
+            <button class="btn btn-primary btn-home">🏠 KEMBALI KE MENU</button>
+        </div>
+
+        <!-- ==========================================================================
+             4. SCREEN: PILIH LEVEL & MODE
+             ========================================================================== -->
+        <div id="screen-level-select" class="screen">
+            <h2 class="screen-title">PILIH LEVEL 🎯</h2>
+
+            <!-- Mode Switch -->
+            <div class="mode-container">
+                <button id="mode-learn" class="btn-mode active">📘 BELAJAR (Tanpa Timer)</button>
+                <button id="mode-challenge" class="btn-mode">⚡ TANTANGAN (Timer)</button>
+            </div>
+            
+            <div id="level-grid" class="level-grid">
+                <!-- Disusun secara dinamis oleh JavaScript -->
+            </div>
+
+            <button class="btn btn-secondary btn-home" style="margin-top: 20px;">🏠 KEMBALI</button>
+        </div>
+
+        <!-- ==========================================================================
+             5. SCREEN: AREA PERMAINAN (GAMEPLAY)
+             ========================================================================== -->
+        <div id="screen-game" class="screen">
+            <!-- HUD Header Bar -->
+            <div class="game-hud">
+                <div class="hud-box">
+                    <span>🎯 Level</span>
+                    <strong id="hud-level">1</strong>
+                </div>
+                <div class="hud-box">
+                    <span>📝 Soal</span>
+                    <strong id="hud-progress">1/5</strong>
+                </div>
+                <div class="hud-box">
+                    <span>⭐ Skor</span>
+                    <strong id="hud-score">0</strong>
+                </div>
+            </div>
+
+            <!-- Timer Bar (Tampak saat mode Tantangan) -->
+            <div id="timer-container" class="timer-container hidden">
+                <div id="timer-bar" class="timer-bar"></div>
+            </div>
+
+            <!-- Hint & Soal Banner -->
+            <div id="hint-banner" class="hint-banner">
+                <span id="hint-text">Mulai dari angka 2, lompat MAJU 3 langkah!</span>
+            </div>
+
+            <!-- Interactive Number Line Board -->
+            <div class="number-line-card">
+                <!-- Character & Jumps Track Area -->
+                <div id="jump-track" class="jump-track">
+                    <!-- Dynamic Jump Arcs & Avatar rendered here -->
+                </div>
+
+                <!-- Number Line Bar -->
+                <div id="number-line" class="number-line">
+                    <!-- Dynamic Number Nodes rendered here -->
+                </div>
+            </div>
+
+            <!-- Control Action Area (Tombol Lompat Interaktif) -->
+            <div class="action-control-area">
+                <button id="btn-jump-forward" class="btn-action btn-forward hidden">
+                    LOMPAT MAJU ( +1 ) ➡️
+                </button>
+                <button id="btn-jump-backward" class="btn-action btn-backward hidden">
+                    ⬅️ LOMPAT MUNDUR ( -1 )
+                </button>
+            </div>
+
+            <!-- Answer Options Palette -->
+            <div class="options-container">
+                <div class="options-title">Di angka berapa Kelinci sekarang? 🤔</div>
+                <div id="options-group" class="options-group">
+                    <!-- Option Buttons rendered dynamically -->
+                </div>
+            </div>
+        </div>
+
+        <!-- ==========================================================================
+             6. SCREEN: HASIL LEVEL
+             ========================================================================== -->
+        <div id="screen-level-result" class="screen">
+            <h2 class="screen-title">LEVEL SELESAI! 🎉</h2>
+            
+            <div id="level-stars" class="stars-display">⭐⭐⭐</div>
+
+            <div class="card result-card">
+                <p>✅ Benar: <strong id="lvl-correct" class="text-green">0</strong> Soal</p>
+                <p>❌ Salah: <strong id="lvl-wrong" class="text-red">0</strong> Soal</p>
+                <p>🏆 Nilai Level: <strong id="lvl-score" class="text-blue">0</strong></p>
+            </div>
+
+            <button id="btn-next-level" class="btn btn-primary">
+                LANJUT LEVEL ➔
+            </button>
+        </div>
+
+        <!-- ==========================================================================
+             7. SCREEN: HASIL AKHIR
+             ========================================================================== -->
+        <div id="screen-final-result" class="screen">
+            <h2 class="screen-title">HEBAT! SELESAI! 🏆</h2>
+            
+            <div class="hero-illustration">👑 🐇 🌟</div>
+
+            <div class="card result-card">
+                <p>Total Skor: <strong id="final-score" class="text-orange">0</strong></p>
+                <p>Akurasi: <strong id="final-accuracy" class="text-green">0%</strong></p>
+                <p id="final-stars" class="stars-display" style="font-size: 3rem;">⭐⭐⭐⭐</p>
+            </div>
+
+            <div class="button-group" style="margin-top: 15px; flex-direction: row;">
+                <button id="btn-restart" class="btn btn-primary">🔄 MAIN LAGI</button>
+                <button class="btn btn-secondary btn-home">🏠 MENU</button>
+            </div>
+        </div>
+
+        <!-- ==========================================================================
+             OVERLAY MODAL (VISUAL FEEDBACK UNTUK ANAK TULI)
+             ========================================================================== -->
+        <div id="feedback-overlay" class="overlay">
+            <div id="feedback-box" class="feedback-box">
+                <div id="feedback-icon" class="feedback-icon">✨</div>
+                <div id="feedback-text" class="feedback-text">BENAR!</div>
+                <button id="btn-feedback-next" class="btn btn-primary">LANJUT ➔</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

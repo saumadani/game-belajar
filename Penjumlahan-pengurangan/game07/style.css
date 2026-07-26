@@ -1,0 +1,458 @@
+/* ==========================================================================
+   1. RESET & BASE STYLES
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    -webkit-user-select: none;
+    font-family: 'Fredoka', 'Comic Sans MS', 'Chalkboard SE', 'Arial Rounded MT Bold', sans-serif;
+}
+
+body {
+    background-color: #EDE7F6; /* Ungu Pastel Soft - tenang untuk penglihatan */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    color: #263238;
+}
+
+#app-container {
+    width: 100vw;
+    height: 100vh;
+    max-width: 900px;
+    max-height: 750px;
+    background: #FFFFFF;
+    position: relative;
+    border-radius: 24px;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   2. SCREEN MANAGER
+   ========================================================================== */
+.screen {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background: #FFFFFF;
+    overflow-y: auto;
+}
+
+.screen.active {
+    display: flex;
+}
+
+/* ==========================================================================
+   3. TYPOGRAPHY & CARDS
+   ========================================================================== */
+.main-title {
+    font-size: 2.1rem;
+    color: #5E35B1;
+    text-align: center;
+    text-shadow: 2px 2px 0px #EDE7F6;
+}
+
+.sub-title {
+    font-size: 1.2rem;
+    color: #546E7A;
+    background: #ECEFF1;
+    padding: 6px 16px;
+    border-radius: 12px;
+    display: inline-block;
+    margin-top: 6px;
+}
+
+.screen-title {
+    font-size: 2.2rem;
+    color: #5E35B1;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.menu-header {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.hero-illustration {
+    font-size: 5.5rem;
+    margin: 16px 0;
+    animation: float 3s ease-in-out infinite;
+}
+
+.card {
+    background: #E8EAF6;
+    border: 3px dashed #7986CB;
+    border-radius: 20px;
+    padding: 20px;
+    width: 100%;
+    max-width: 550px;
+    margin-bottom: 20px;
+}
+
+.instruction-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.step-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.1rem;
+}
+
+.step-num {
+    background: #7E57C2;
+    color: white;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.info-card {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.result-card {
+    font-size: 1.5rem;
+    line-height: 1.8;
+    text-align: center;
+}
+
+/* ==========================================================================
+   4. BUTTONS & MODE CONTROLS
+   ========================================================================== */
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+    max-width: 320px;
+    align-items: center;
+}
+
+.btn {
+    padding: 14px 28px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    border-radius: 18px;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.btn:active {
+    transform: translateY(4px);
+}
+
+.btn-primary { background: #4CAF50; color: white; box-shadow: 0 6px 0 #2E7D32; }
+.btn-primary:active { box-shadow: 0 2px 0 #2E7D32; }
+
+.btn-secondary { background: #FF9800; color: white; box-shadow: 0 6px 0 #E65100; }
+.btn-secondary:active { box-shadow: 0 2px 0 #E65100; }
+
+.btn-info { background: #7E57C2; color: white; box-shadow: 0 6px 0 #512DA8; }
+.btn-info:active { box-shadow: 0 2px 0 #512DA8; }
+
+.mode-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+    width: 100%;
+    max-width: 480px;
+}
+
+.btn-mode {
+    flex: 1;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 14px;
+    border: 3px solid #B0BEC5;
+    background: #ECEFF1;
+    color: #546E7A;
+    cursor: pointer;
+}
+
+.btn-mode.active {
+    background: #EDE7F6;
+    border-color: #7E57C2;
+    color: #512DA8;
+    box-shadow: 0 4px 0 #512DA8;
+}
+
+/* ==========================================================================
+   5. GAMEPLAY UI & MATCHING CARD GRID
+   ========================================================================== */
+.game-hud {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background: #EDE7F6;
+    padding: 10px 20px;
+    border-radius: 16px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #512DA8;
+    margin-bottom: 8px;
+}
+
+.hud-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.timer-container {
+    width: 100%;
+    height: 10px;
+    background: #ECEFF1;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.timer-bar {
+    width: 100%;
+    height: 100%;
+    background: #4CAF50;
+    transition: width 1s linear, background-color 0.3s;
+}
+
+.hint-banner {
+    background: #E8EAF6;
+    border: 3px solid #C5CAE9;
+    color: #283593;
+    padding: 8px 16px;
+    border-radius: 14px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 12px;
+    text-align: center;
+    width: 100%;
+}
+
+/* 3D Flip Card Matrix Grid */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    perspective: 1000px;
+}
+
+.game-card {
+    height: 95px;
+    position: relative;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.game-card.flipped {
+    transform: rotateY(180deg);
+}
+
+.game-card.matched {
+    transform: rotateY(180deg);
+    cursor: default;
+}
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Card Back (Cover) */
+.card-back {
+    background: linear-gradient(135deg, #673AB7, #512DA8);
+    border: 3px solid #311B92;
+    color: white;
+    font-size: 2.2rem;
+}
+
+/* Card Front (Math Operations) */
+.card-front {
+    transform: rotateY(180deg);
+    font-size: 1.3rem;
+    text-align: center;
+    padding: 6px;
+    border: 3px solid #B0BEC5;
+    background: #FFFFFF;
+}
+
+.card-front.type-add {
+    background: #E8F5E9;
+    border-color: #81C784;
+    color: #2E7D32;
+}
+
+.card-front.type-sub {
+    background: #FFF3E0;
+    border-color: #FFB74D;
+    color: #E65100;
+}
+
+/* Matched Card Highlight */
+.game-card.matched .card-front {
+    border-color: #4CAF50;
+    box-shadow: 0 0 12px #4CAF50;
+    animation: glowCard 1.5s infinite alternate;
+}
+
+/* ==========================================================================
+   6. LEVEL SELECTION GRID
+   ========================================================================== */
+.level-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    width: 100%;
+    max-width: 480px;
+}
+
+.btn-level {
+    padding: 16px;
+    font-size: 1.4rem;
+    border-radius: 18px;
+    background: #FFF;
+    border: 4px solid #7E57C2;
+    color: #512DA8;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 6px 0 #512DA8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.btn-level:active {
+    transform: translateY(6px);
+    box-shadow: 0 0 0 #512DA8;
+}
+
+.btn-level.locked {
+    background: #ECEFF1;
+    border-color: #B0BEC5;
+    color: #90A4AE;
+    box-shadow: 0 6px 0 #90A4AE;
+    pointer-events: none;
+}
+
+/* ==========================================================================
+   7. FEEDBACK OVERLAY (VISUAL TULI)
+   ========================================================================== */
+.overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.65);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.overlay.active { display: flex; }
+
+.feedback-box {
+    background: white;
+    padding: 24px;
+    border-radius: 24px;
+    text-align: center;
+    width: 85%;
+    max-width: 380px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+}
+
+.feedback-icon {
+    font-size: 5rem;
+    margin-bottom: 6px;
+}
+
+.feedback-text {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+.stars-display {
+    font-size: 3.5rem;
+    margin-bottom: 12px;
+}
+
+/* ==========================================================================
+   8. ANIMATIONS & UTILITIES
+   ========================================================================== */
+.hidden { display: none !important; }
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-12px); }
+    40%, 80% { transform: translateX(12px); }
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.5); opacity: 0; }
+    80% { transform: scale(1.08); opacity: 1; }
+    100% { transform: scale(1); }
+}
+
+@keyframes glowCard {
+    from { box-shadow: 0 0 4px #4CAF50; }
+    to { box-shadow: 0 0 16px #4CAF50; }
+}
+
+.anim-shake { animation: shake 0.4s; }
+.anim-pop { animation: popIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+
+.text-green { color: #2E7D32; }
+.text-red { color: #C62828; }
+.text-blue { color: #0288D1; }
+.text-orange { color: #EF6C00; }
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+    .main-title { font-size: 1.6rem; }
+    .hero-illustration { font-size: 4rem; margin: 10px 0; }
+    .card-grid { gap: 8px; }
+    .game-card { height: 80px; }
+    .card-front { font-size: 1rem; }
+    .btn { font-size: 1.1rem; padding: 12px 20px; }
+}

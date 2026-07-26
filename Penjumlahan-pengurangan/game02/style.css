@@ -1,0 +1,383 @@
+/* ==========================================================================
+   RESET & DASAR
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    -webkit-user-select: none;
+    font-family: 'Fredoka', 'Comic Sans MS', 'Arial Rounded MT Bold', sans-serif;
+}
+
+body {
+    background-color: #B2EBF2; /* Warna toska lembut (ramah mata) */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    color: #37474F;
+}
+
+#app-container {
+    width: 100vw;
+    height: 100vh;
+    max-width: 1024px;
+    max-height: 768px;
+    background: #FFFFFF;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   SCREENS & LAYOUT
+   ========================================================================== */
+.screen {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    background: #FFFFFF;
+    overflow-y: auto;
+}
+
+.screen.active {
+    display: flex;
+}
+
+/* ==========================================================================
+   TYPOGRAPHY & CARDS
+   ========================================================================== */
+h1 {
+    font-size: 3rem;
+    color: #0288D1;
+    text-align: center;
+    text-shadow: 2px 2px 0px #B3E5FC;
+    margin-bottom: 5px;
+}
+
+h2 {
+    font-size: 2.5rem;
+    color: #F57C00;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    color: #546E7A;
+    background: #ECEFF1;
+    padding: 8px 20px;
+    border-radius: 15px;
+    display: inline-block;
+}
+
+.header-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.hero-illustration {
+    font-size: 6rem;
+    margin: 20px 0;
+    animation: float 3s ease-in-out infinite;
+}
+
+.card {
+    background: #FFF9C4;
+    border: 4px dashed #FBC02D;
+    border-radius: 20px;
+    padding: 20px;
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 20px;
+}
+
+.info-card { font-size: 1.3rem; line-height: 1.6; }
+.result-card { font-size: 1.8rem; line-height: 1.8; text-align: center; }
+
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
+.btn {
+    padding: 15px 30px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.1s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 350px;
+}
+
+.btn:active {
+    transform: translateY(5px);
+}
+
+.btn-primary { background: #4CAF50; color: white; box-shadow: 0 8px 0 #2E7D32; }
+.btn-primary:active { box-shadow: 0 3px 0 #2E7D32; }
+
+.btn-secondary { background: #FF9800; color: white; box-shadow: 0 8px 0 #EF6C00; }
+.btn-secondary:active { box-shadow: 0 3px 0 #EF6C00; }
+
+.btn-info { background: #03A9F4; color: white; box-shadow: 0 8px 0 #0277BD; }
+.btn-info:active { box-shadow: 0 3px 0 #0277BD; }
+
+.menu-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    width: 100%;
+}
+
+/* ==========================================================================
+   GAMEPLAY UI (HUD, AREA BENDA, OPSI)
+   ========================================================================== */
+.hud {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background: #E1F5FE;
+    padding: 15px 25px;
+    border-radius: 20px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #0277BD;
+    margin-bottom: 15px;
+}
+
+.instruction-banner {
+    background: #FFF3E0;
+    border: 3px solid #FFB74D;
+    color: #E65100;
+    padding: 10px 20px;
+    border-radius: 15px;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+.highlight-number {
+    background: #E65100;
+    color: white;
+    padding: 2px 12px;
+    border-radius: 10px;
+    font-size: 1.8rem;
+}
+
+/* Area Interaksi Objek */
+.play-area {
+    flex: 1;
+    width: 100%;
+    background: #FAFAFA;
+    border: 4px inset #CFD8DC;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    gap: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.object-item {
+    width: 80px; height: 80px;
+    font-size: 3.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    border: 3px solid #B0BEC5;
+    border-radius: 15px;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+    position: relative;
+}
+
+.object-item:hover { transform: scale(1.1); }
+.object-item:active { transform: scale(0.9); }
+
+/* State Objek Dibuang */
+.object-item.removed {
+    opacity: 0.4;
+    border-color: #EF5350;
+    background: #FFEBEE;
+    pointer-events: none; /* Cegah klik berulang */
+    transform: scale(0.95);
+}
+
+.object-item.removed::after {
+    content: "❌";
+    position: absolute;
+    font-size: 3rem;
+}
+
+/* Area Jawaban */
+.answer-section {
+    width: 100%;
+    text-align: center;
+}
+
+.answer-title {
+    font-size: 1.2rem;
+    color: #455A64;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.options-area {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    transition: opacity 0.3s;
+}
+
+/* Opsi jawaban dinonaktifkan sebelum benda dibuang semua */
+.options-area.disabled {
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.btn-option {
+    width: 90px; height: 90px;
+    font-size: 2.5rem;
+    font-weight: bold;
+    background: #E8F5E9;
+    border: 4px solid #81C784;
+    color: #2E7D32;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 0 6px 0 #4CAF50;
+    transition: transform 0.1s;
+}
+
+.btn-option:active {
+    transform: translateY(6px);
+    box-shadow: 0 0 0 #4CAF50;
+}
+
+/* ==========================================================================
+   FEEDBACK MODAL & OVERLAYS
+   ========================================================================== */
+.overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.overlay.active { display: flex; }
+
+.feedback-box {
+    background: white;
+    padding: 30px;
+    border-radius: 25px;
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+}
+
+.feedback-icon {
+    font-size: 6rem;
+    margin-bottom: 10px;
+}
+
+.feedback-text {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.stars-display {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+/* ==========================================================================
+   LEVEL SELECTION
+   ========================================================================== */
+.level-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    width: 100%;
+    max-width: 500px;
+}
+
+.btn-level {
+    padding: 20px;
+    font-size: 1.8rem;
+    border-radius: 20px;
+    background: #FFF;
+    border: 4px solid #03A9F4;
+    color: #0277BD;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 6px 0 #0288D1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+.btn-level:active { transform: translateY(6px); box-shadow: 0 0 0 #0288D1; }
+.btn-level.locked { background: #ECEFF1; border-color: #B0BEC5; color: #90A4AE; box-shadow: 0 6px 0 #90A4AE; pointer-events: none; }
+
+/* ==========================================================================
+   ANIMATIONS & UTILITIES
+   ========================================================================== */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-15px); }
+    40%, 80% { transform: translateX(15px); }
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.5); opacity: 0; }
+    80% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); }
+}
+
+.anim-shake { animation: shake 0.5s; border-color: #F44336 !important; }
+.anim-pop { animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+
+.text-green { color: #4CAF50; }
+.text-red { color: #F44336; }
+.text-blue { color: #03A9F4; }
+.text-orange { color: #FF9800; }
+
+.step-row { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+.icon-circle { background: #FF9800; color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; flex-shrink: 0;}
+
+/* RESPONSIVE MEDIA QUERIES */
+@media (max-width: 600px) {
+    h1 { font-size: 2rem; }
+    .hero-illustration { font-size: 4rem; margin: 10px 0; }
+    .hud { font-size: 1.1rem; padding: 10px 15px; }
+    .object-item { width: 60px; height: 60px; font-size: 2.5rem; }
+    .btn-option { width: 70px; height: 70px; font-size: 2rem; }
+    .instruction-banner { font-size: 1.2rem; }
+    .btn { font-size: 1.2rem; padding: 12px 20px; }
+}

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Edukasi Matematika</title>
+  <!-- Menghubungkan ke file CSS eksternal -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- BACKGROUND DEKORATIF -->
+  <div class="bg-decorations" aria-hidden="true">
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+    <div class="cloud cloud-3"></div>
+    <div class="hill hill-back"></div>
+    <div class="hill hill-front"></div>
+  </div>
+
+  <!-- HERO HEADER SECTION -->
+  <header class="hero-header">
+    <div class="container">
+      <div class="logo-wrapper">
+        <img src="assets/icons/icons.png" alt="Logo Utama Game Edukasi Matematika" class="hero-logo">
+      </div>
+      <h1 class="welcome-title">Selamat Datang 👋</h1>
+      <p class="welcome-subtitle">Pilih Materi Matematika</p>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT: GRID KARTU MATERI -->
+  <main class="main-content">
+    <div class="container">
+      <section class="materials-grid" aria-label="Daftar Materi Matematika">
+
+        <!-- CARD 1: BILANGAN 1–1000 -->
+        <article class="material-card card-blue">
+          <div class="card-status-badge">8 Game</div>
+          <div class="card-icon-wrapper">
+            <img src="assets/icons/icons1_bilangan.png" alt="Ikon Bilangan" class="card-icon">
+          </div>
+          <div class="card-body">
+            <h2 class="material-title">Bilangan 1–1000</h2>
+            <p class="material-desc">Belajar mengenal angka.</p>
+          </div>
+          <button type="button" class="btn-start" aria-label="Mulai materi Bilangan 1-1000">
+            <span class="btn-icon" aria-hidden="true">▶</span> Mulai
+          </button>
+        </article>
+
+        <!-- CARD 2: PENJUMLAHAN DAN PENGURANGAN -->
+        <article class="material-card card-green">
+          <div class="card-status-badge">8 Game</div>
+          <div class="card-icon-wrapper">
+            <img src="assets/icons/icons2_penjumlahanpengurangan.png" alt="Ikon Penjumlahan dan Pengurangan" class="card-icon">
+          </div>
+          <div class="card-body">
+            <h2 class="material-title">Penjumlahan & Pengurangan</h2>
+            <p class="material-desc">Belajar menghitung sederhana.</p>
+          </div>
+          <button type="button" class="btn-start" aria-label="Mulai materi Penjumlahan dan Pengurangan">
+            <span class="btn-icon" aria-hidden="true">▶</span> Mulai
+          </button>
+        </article>
+
+        <!-- CARD 3: GEOMETRI -->
+        <article class="material-card card-purple">
+          <div class="card-status-badge">8 Game</div>
+          <div class="card-icon-wrapper">
+            <img src="assets/icons/icons3_geometri.png" alt="Ikon Geometri" class="card-icon">
+          </div>
+          <div class="card-body">
+            <h2 class="material-title">Geometri</h2>
+            <p class="material-desc">Mengenal bentuk & bangun datar.</p>
+          </div>
+          <button type="button" class="btn-start" aria-label="Mulai materi Geometri">
+            <span class="btn-icon" aria-hidden="true">▶</span> Mulai
+          </button>
+        </article>
+
+        <!-- CARD 4: PENGUKURAN PANJANG -->
+        <article class="material-card card-yellow">
+          <div class="card-status-badge">8 Game</div>
+          <div class="card-icon-wrapper">
+            <img src="assets/icons/icons4_pengukuran.png" alt="Ikon Pengukuran Panjang" class="card-icon">
+          </div>
+          <div class="card-body">
+            <h2 class="material-title">Pengukuran</h2>
+            <p class="material-desc">Belajar mengukur panjang benda.</p>
+          </div>
+          <button type="button" class="btn-start" aria-label="Mulai materi Pengukuran Panjang">
+            <span class="btn-icon" aria-hidden="true">▶</span> Mulai
+          </button>
+        </article>
+
+        <!-- CARD 5: PECAHAN -->
+        <article class="material-card card-orange">
+          <div class="card-status-badge">8 Game</div>
+          <div class="card-icon-wrapper">
+            <img src="assets/icons/icons5_pecahan.png" alt="Ikon Pecahan" class="card-icon">
+          </div>
+          <div class="card-body">
+            <h2 class="material-title">Pecahan</h2>
+            <p class="material-desc">Mengenal bagian & pecahan.</p>
+          </div>
+          <button type="button" class="btn-start" aria-label="Mulai materi Pecahan">
+            <span class="btn-icon" aria-hidden="true">▶</span> Mulai
+          </button>
+        </article>
+
+        <!-- CARD 6: PENGUKURAN WAKTU DAN BERAT -->
+        <article class="material-card card-red">
+          <div class="card-status-badge">8 Game</div>
+          <div class="card-icon-wrapper">
+            <img src="assets/icons/icons6_waktuberat.png" alt="Ikon Waktu dan Berat" class="card-icon">
+          </div>
+          <div class="card-body">
+            <h2 class="material-title">Waktu & Berat</h2>
+            <p class="material-desc">Mengenal jam dan timbangan.</p>
+          </div>
+          <button type="button" class="btn-start" aria-label="Mulai materi Waktu dan Berat">
+            <span class="btn-icon" aria-hidden="true">▶</span> Mulai
+          </button>
+        </article>
+
+        <!-- CARD 7: DIAGRAM -->
+        <article class="material-card card-teal">
+          <div class="card-status-badge">8 Game</div>
+          <div class="card-icon-wrapper">
+            <img src="assets/icons/icons7_diagram.png" alt="Ikon Diagram" class="card-icon">
+          </div>
+          <div class="card-body">
+            <h2 class="material-title">Diagram</h2>
+            <p class="material-desc">Belajar membaca data gambar.</p>
+          </div>
+          <button type="button" class="btn-start" aria-label="Mulai materi Diagram">
+            <span class="btn-icon" aria-hidden="true">▶</span> Mulai
+          </button>
+        </article>
+
+      </section>
+    </div>
+  </main>
+
+  <!-- FOOTER SEDERHANA -->
+  <footer class="app-footer">
+    <div class="container">
+      <p class="app-version">Versi 1.0</p>
+      <p class="app-copyright">&copy; Laboratorium Game Edukasi Matematika</p>
+    </div>
+  </footer>
+
+  <!-- FIXED BOTTOM NAVIGATION BAR -->
+  <nav class="bottom-nav" aria-label="Navigasi Utama Bawah">
+    <button type="button" class="nav-item" id="nav-prestasi">
+      <span class="nav-icon" aria-hidden="true">🏆</span>
+      <span class="nav-label">Prestasi</span>
+    </button>
+    <button type="button" class="nav-item" id="nav-petunjuk">
+      <span class="nav-icon" aria-hidden="true">📖</span>
+      <span class="nav-label">Petunjuk</span>
+    </button>
+    <button type="button" class="nav-item" id="nav-pengaturan">
+      <span class="nav-icon" aria-hidden="true">⚙</span>
+      <span class="nav-label">Pengaturan</span>
+    </button>
+    <button type="button" class="nav-item" id="nav-tentang">
+      <span class="nav-icon" aria-hidden="true">ℹ</span>
+      <span class="nav-label">Tentang</span>
+    </button>
+  </nav>
+
+  <!-- Menghubungkan ke file JavaScript eksternal -->
+  <script src="script.js"></script>
+</body>
+</html>

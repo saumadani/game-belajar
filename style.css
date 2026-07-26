@@ -1,0 +1,507 @@
+/* ==========================================================================
+   1. VARIABLES & RESET BASE
+   ========================================================================== */
+:root {
+  /* Palet Warna Utama (Ekstraksi dari Logo) */
+  --color-blue-primary: #0C61C9;
+  --color-blue-light: #EBF5FF;
+  --color-yellow-primary: #FFC800;
+  --color-green-primary: #52B81F;
+  --color-green-dark: #388E3C;
+  --color-red-primary: #FF3B30;
+  --color-orange-primary: #FF8800;
+  --color-purple-primary: #9333EA;
+  --color-teal-primary: #0D9488;
+  
+  /* Warna Teks & Dasar */
+  --color-text-dark: #1E293B;
+  --color-text-muted: #64748B;
+  --color-white: #FFFFFF;
+  --color-bg-sky: #7DD3FC;
+
+  /* Font Family */
+  --font-family: 'Fredoka', 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Radius & Shadow */
+  --radius-card: 20px;
+  --radius-btn: 50px;
+  --shadow-card: 0 8px 20px -4px rgba(0, 0, 0, 0.1);
+  --shadow-btn: 0 4px 0px;
+  --transition-fast: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Base Body untuk Smartphone (Scrollable) */
+body {
+  font-family: var(--font-family);
+  background-color: var(--color-bg-sky);
+  color: var(--color-text-dark);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  padding-bottom: 110px; /* Jarak bawah agar tidak tertutup Bottom Nav */
+}
+
+/* Container Umum */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* ==========================================================================
+   2. DEKORASI BACKGROUND (Awan & Bukit)
+   ========================================================================== */
+.bg-decorations {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.cloud {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 50px;
+}
+.cloud::before, .cloud::after {
+  content: '';
+  position: absolute;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 50%;
+}
+.cloud-1 { width: 100px; height: 35px; top: 8%; left: 4%; }
+.cloud-1::before { width: 40px; height: 40px; top: -15px; left: 12px; }
+.cloud-1::after { width: 30px; height: 30px; top: -10px; right: 12px; }
+
+.cloud-2 { width: 130px; height: 40px; top: 20%; right: 6%; }
+.cloud-2::before { width: 50px; height: 50px; top: -20px; left: 15px; }
+.cloud-2::after { width: 40px; height: 40px; top: -15px; right: 15px; }
+
+.cloud-3 { width: 80px; height: 30px; top: 40%; left: 8%; }
+.cloud-3::before { width: 30px; height: 30px; top: -10px; left: 8px; }
+.cloud-3::after { width: 25px; height: 25px; top: -8px; right: 8px; }
+
+.hill {
+  position: absolute;
+  bottom: 0;
+  border-radius: 50% 50% 0 0;
+}
+.hill-back {
+  width: 120vw;
+  height: 220px;
+  background-color: #86EFAC;
+  left: -10vw;
+  bottom: -40px;
+}
+.hill-front {
+  width: 110vw;
+  height: 150px;
+  background-color: #4ADE80;
+  right: -5vw;
+  bottom: -30px;
+}
+
+/* ==========================================================================
+   3. HERO HEADER (Mobile Layout)
+   ========================================================================== */
+.hero-header {
+  padding: 20px 0 10px;
+  text-align: center;
+}
+
+.logo-wrapper {
+  margin-bottom: 8px;
+}
+
+.hero-logo {
+  max-width: 220px;
+  width: 70%;
+  height: auto;
+  filter: drop-shadow(0 8px 12px rgba(0,0,0,0.15));
+  animation: floatBounce 3s ease-in-out infinite;
+}
+
+@keyframes floatBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.welcome-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--color-white);
+  text-shadow: 2px 3px 0px var(--color-blue-primary), 0px 4px 8px rgba(0,0,0,0.2);
+  margin-bottom: 2px;
+}
+
+.welcome-subtitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-blue-primary);
+  background-color: rgba(255, 255, 255, 0.92);
+  display: inline-block;
+  padding: 4px 16px;
+  border-radius: 30px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+}
+
+/* ==========================================================================
+   4. GRID KARTU MATERI (Mobile Layout: 2 Kolom, Scroll Vertikal)
+   ========================================================================== */
+.main-content {
+  padding: 12px 0 20px;
+}
+
+.materials-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.material-card {
+  background-color: var(--color-white);
+  border-radius: var(--radius-card);
+  padding: 12px 10px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  box-shadow: var(--shadow-card);
+  border: 3px solid var(--card-border-color, #E2E8F0);
+  transition: var(--transition-fast);
+  cursor: pointer;
+}
+
+.material-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.15);
+}
+
+.material-card:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+.card-status-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: #F1F5F9;
+  color: var(--color-text-muted);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+.card-icon-wrapper {
+  width: 54px;
+  height: 54px;
+  margin: 10px 0 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: var(--transition-fast);
+}
+
+.material-card:hover .card-icon {
+  transform: scale(1.1) rotate(3deg);
+}
+
+.card-body {
+  flex-grow: 1;
+  margin-bottom: 10px;
+}
+
+besar 10-15% & tebal) */
+.material-title {
+  font-size: 1.1rem; /* Naik dari 0.95rem */
+  font-weight: 900; /* Dibuat lebih tebal dari 800 */
+  color: var(--color-text-dark);
+  line-height: 1.25; /* Menjaga kerapihan jika judul 2 baris */
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+
+/* Teks Deskripsi Materi (Diperbesar sedikit) */
+.material-desc {
+  font-size: 0.82rem; /* Naik dari 0.75rem */
+  font-weight: 600;
+  color: var(--color-text-muted);
+  line-height: 1.2;
+}
+
+.btn-start {
+  width: 100%;
+  padding: 8px 12px;
+  border: none;
+  border-radius: var(--radius-btn);
+  background-color: var(--color-green-primary);
+  color: var(--color-white);
+  font-family: var(--font-family);
+  font-size: 0.85rem;
+  font-weight: 800;
+  box-shadow: 0 3px 0px var(--color-green-dark);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: var(--transition-fast);
+}
+
+.btn-start:hover {
+  filter: brightness(1.08);
+}
+
+.btn-start:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0px var(--color-green-dark);
+}
+
+.btn-icon {
+  font-size: 0.75rem;
+}
+
+/* Variasi Warna Border per Kartu */
+.card-blue   { --card-border-color: var(--color-blue-primary); }
+.card-green  { --card-border-color: var(--color-green-primary); }
+.card-purple { --card-border-color: var(--color-purple-primary); }
+.card-yellow { --card-border-color: var(--color-yellow-primary); }
+.card-orange { --card-border-color: var(--color-orange-primary); }
+.card-red    { --card-border-color: var(--color-red-primary); }
+.card-teal   { --card-border-color: var(--color-teal-primary); }
+
+/* ==========================================================================
+   5. FOOTER SEDERHANA
+   ========================================================================== */
+.app-footer {
+  text-align: center;
+  padding: 10px 0 20px;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.app-version {
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.app-copyright {
+  font-size: 0.75rem;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+/* ==========================================================================
+   6. FIXED BOTTOM NAVIGATION BAR
+   ========================================================================== */
+.bottom-nav {
+  position: fixed;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 24px);
+  max-width: 480px;
+  background-color: var(--color-white);
+  border-radius: 25px;
+  padding: 6px 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  border: 3px solid #F1F5F9;
+  z-index: 100;
+}
+
+.nav-item {
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 4px 10px;
+  border-radius: 16px;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  font-family: var(--font-family);
+  transition: var(--transition-fast);
+}
+
+.nav-icon {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.nav-label {
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+.nav-item:hover, .nav-item:focus {
+  color: var(--color-blue-primary);
+  background-color: var(--color-blue-light);
+}
+
+.nav-item:active {
+  transform: scale(0.92);
+}
+
+/* ==========================================================================
+   7. MEDIA QUERIES OPTIMIZATION
+   ========================================================================== */
+
+/* Tablet (Min-width: 600px) */
+@media (min-width: 600px) {
+  .hero-logo { max-width: 240px; }
+  .welcome-title { font-size: 2.2rem; }
+  .materials-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+}
+
+/* Desktop & Laptop (Min-width: 1024px)
+   OPTIMASI 100vh TANPA SCROLL VERTIKAL */
+@media (min-width: 1024px) {
+  html, body {
+    height: 100vh;
+    max-height: 100vh;
+    overflow: hidden; /* Menghilangkan scroll vertikal */
+    padding-bottom: 0;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  /* Compact Hero Header */
+  .hero-header {
+    padding: 12px 0 4px;
+    flex-shrink: 0;
+  }
+
+  .logo-wrapper {
+    margin-bottom: 4px;
+  }
+
+  .hero-logo {
+    max-width: 140px; /* Ukuran proporsional agar hemat ruang vertikal */
+  }
+
+  .welcome-title {
+    font-size: 1.6rem;
+    margin-bottom: 2px;
+  }
+
+  .welcome-subtitle {
+    font-size: 0.85rem;
+    padding: 3px 14px;
+  }
+
+  /* Main Content Layout 100vh Fits */
+  .main-content {
+    padding: 6px 0;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  /* 4 Kolom Grid dengan Card 7 Terpusat (Last Child Span / Center) */
+  .materials-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px 16px;
+    width: 100%;
+  }
+
+  /* Penataan khusus agar 7 kartu tampil simetris dalam 2 baris (4 di atas, 3 di bawah) */
+  .material-card:nth-child(5) {
+    grid-column: 1 / span 1;
+  }
+  
+  /* Compact Material Card untuk Desktop */
+  .material-card {
+    padding: 10px 12px 12px;
+    border-width: 3px;
+  }
+
+  .card-status-badge {
+    font-size: 0.65rem;
+    padding: 2px 6px;
+    top: 6px;
+    right: 6px;
+  }
+
+  .card-icon-wrapper {
+    width: 48px;
+    height: 48px;
+    margin: 4px 0;
+  }
+
+  /* Dalam Media Query Desktop (min-width: 1024px) */
+  .material-title {
+    font-size: 1.05rem; /* Naik dari 0.95rem untuk tampilan 100vh */
+    font-weight: 900;
+    line-height: 1.2;
+  }
+
+  .material-desc {
+    font-size: 0.78rem; /* Naik dari 0.72rem */
+    line-height: 1.15;
+  }
+
+  .btn-start {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+
+  /* Footer Ringkas */
+  .app-footer {
+    padding: 2px 0 72px; /* Memberi ruang untuk Bottom Nav */
+    flex-shrink: 0;
+  }
+
+  .app-version, .app-copyright {
+    font-size: 0.7rem;
+  }
+
+  /* Bottom Navigation Desktop */
+  .bottom-nav {
+    bottom: 10px;
+    max-width: 440px;
+    padding: 4px 10px;
+  }
+
+  .nav-item {
+    padding: 3px 12px;
+  }
+
+  .nav-icon {
+    font-size: 1.15rem;
+  }
+
+  .nav-label {
+    font-size: 0.68rem;
+  }
+}

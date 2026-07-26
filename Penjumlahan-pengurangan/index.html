@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Edukasi Matematika - Penjumlahan & Pengurangan</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+<button id="btn-home" class="btn-home">
+    🏠 Beranda
+</button>
+
+  <div class="main-container">
+    <!-- Header / Title Section -->
+    <header class="header">
+      <div class="logo">➕➖</div>
+      <h1>Penjumlahan & Pengurangan</h1>
+      <p class="subtitle">Pilih permainan untuk mulai belajar!</p>
+    </header>
+
+    <!-- Game Selection Grid -->
+    <main class="game-grid">
+      <a href="game01/index.html" class="game-card card-1">
+        <span class="badge">①</span>
+        <span class="game-title">Petualangan Tambah Ceria</span>
+      </a>
+
+      <a href="game02/index.html" class="game-card card-2">
+        <span class="badge">②</span>
+        <span class="game-title">Misi Cari Sisa Benda</span>
+      </a>
+
+      <a href="game03/index.html" class="game-card card-3">
+        <span class="badge">③</span>
+        <span class="game-title">Laboratorium Operasi Hitung</span>
+      </a>
+
+      <a href="game04/index.html" class="game-card card-4">
+        <span class="badge">④</span>
+        <span class="game-title">Rahasia Puluhan & Satuan</span>
+      </a>
+
+      <a href="game05/index.html" class="game-card card-5">
+        <span class="badge">⑤</span>
+        <span class="game-title">Perjalanan Angka</span>
+      </a>
+
+      <a href="game06/index.html" class="game-card card-6">
+        <span class="badge">⑥</span>
+        <span class="game-title">Belanja Pintar Matematika</span>
+      </a>
+
+      <a href="game07/index.html" class="game-card card-7">
+        <span class="badge">⑦</span>
+        <span class="game-title">Pasangan Angka Rahasia</span>
+      </a>
+
+      <a href="game08/index.html" class="game-card card-8">
+        <span class="badge">⑧</span>
+        <span class="game-title">Master Hitung SDLB</span>
+      </a>
+    </main>
+
+    <!-- Footer Action -->
+    <footer class="footer">
+      <button type="button" class="btn-exit" onclick="keluarAplikasi()">❌ Keluar</button>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petualangan Tambah Ceria</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Tombol Kembali yang Sudah Terisolasi Full Style -->
+<a href="../index.html" style="
+  position: fixed !important;
+  top: 15px !important;
+  left: 15px !important;
+  z-index: 999999 !important;
+  background-color: #ff4757 !important;
+  color: #ffffff !important;
+  padding: 10px 18px !important;
+  border-radius: 25px !important;
+  text-decoration: none !important;
+  font-family: 'Comic Sans MS', 'Fredoka', sans-serif !important;
+  font-weight: bold !important;
+  font-size: 14px !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+">🏠 Kembali ke Menu</a>
+
+    <div class="game-container">
+
+        <!-- ==========================================================
+             HALAMAN 1 — MAIN MENU
+             ========================================================== -->
+        <section class="screen-view" id="screen-main-menu">
+            <div class="menu-card">
+                <h1 class="main-title">Petualangan Tambah Ceria</h1>
+                <p class="main-subtitle">Belajar Penjumlahan dengan Cara Menyenangkan</p>
+                
+                <div class="main-illustration">
+                    <span>🍎</span><span>➕</span><span>🧺</span><span>=</span><span>🌟</span>
+                </div>
+
+                <div class="menu-actions">
+                    <button class="btn-menu btn-primary" id="btn-start-game">▶ Mulai Bermain</button>
+                    <button class="btn-menu btn-secondary" id="btn-show-instructions">📘 Petunjuk</button>
+                    <button class="btn-menu btn-info" id="btn-show-about">ℹ️ Tentang Game</button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==========================================================
+             HALAMAN 2 — PETUNJUK BERMAIN
+             ========================================================== -->
+        <section class="screen-view hidden" id="screen-instructions">
+            <div class="card-box">
+                <h2 class="card-title">📖 Cara Bermain</h2>
+                
+                <div class="instructions-list">
+                    <div class="instruction-item">
+                        <span class="step-icon">1️⃣</span>
+                        <p><strong>Tarik kelompok benda</strong> di sebelah kanan ke dalam keranjang utama.</p>
+                    </div>
+                    <div class="instruction-item">
+                        <span class="step-icon">2️⃣</span>
+                        <p><strong>Hitung jumlah seluruh benda</strong> setelah digabungkan.</p>
+                    </div>
+                    <div class="instruction-item">
+                        <span class="step-icon">3️⃣</span>
+                        <p><strong>Pilih angka jawaban</strong> yang benar dari pilihan yang ada.</p>
+                    </div>
+                    <div class="instruction-item">
+                        <span class="step-icon">4️⃣</span>
+                        <p><strong>Kumpulkan bintang</strong> sebanyak-banyaknya di setiap level!</p>
+                    </div>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-action btn-primary" id="btn-play-from-guide">▶ Mulai Bermain</button>
+                    <button class="btn-action btn-secondary" id="btn-back-to-menu-from-guide">🏠 Menu Utama</button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- MODAL ABOUT (TENTANG GAME) -->
+        <div class="overlay hidden" id="modal-about">
+            <div class="modal-card">
+                <h2 class="modal-title">ℹ️ Tentang Game</h2>
+                <p class="modal-desc">
+                    <strong>Petualangan Tambah Ceria</strong> adalah media pembelajaran matematika interaktif untuk membantu siswa memahami konsep penjumlahan melalui visual counting dan penggabungan benda.
+                </p>
+                <p class="modal-desc">
+                    Dirancang khusus dengan aksesibilitas visual tanpa batas waktu untuk pembelajaran anak SD dan Anak Berkebutuhan Khusus (Tuli).
+                </p>
+                <button class="btn-action btn-secondary" id="btn-close-about">Tutup</button>
+            </div>
+        </div>
+
+
+        <!-- ==========================================================
+             HALAMAN PERMAINAN (LEVEL 1 - 4)
+             ========================================================== -->
+        <section class="screen-view hidden" id="screen-gameplay">
+            
+            <!-- HEADER PROGRESS -->
+            <header class="game-header">
+                <div class="stats-bar">
+                    <div class="stat-badge level-badge" id="hud-level">Level 1 dari 4</div>
+                    <div class="stat-badge question-badge" id="hud-question">Soal 1 dari 5</div>
+                    <div class="stat-badge score-badge">⭐ <span id="hud-stars">0</span></div>
+                </div>
+            </header>
+
+            <!-- AREA GAMEPLAY UTAMA -->
+            <main class="game-board">
+                
+                <div class="instruction-banner">
+                    <span class="instruction-icon">👉</span>
+                    <span>Tarik kelompok benda kanan ke keranjang kiri untuk menggabungkan!</span>
+                </div>
+
+                <!-- AREA VISUAL COUNTING -->
+                <div class="visual-counting-area">
+                    <!-- Keranjang Utama -->
+                    <div class="basket-container" id="basket-target">
+                        <div class="basket-label">Keranjang Utama</div>
+                        <div class="items-grid" id="items-group-a"></div>
+                    </div>
+
+                    <div class="plus-operator" id="plus-operator">+</div>
+
+                    <!-- Kelompok Benda Kedua (Di-drag) -->
+                    <div class="basket-container draggable-basket" id="basket-source" draggable="true">
+                        <div class="basket-label">Kelompok Tambahan (Tarik)</div>
+                        <div class="items-grid" id="items-group-b"></div>
+                    </div>
+                </div>
+
+                <div class="combined-notice hidden" id="combined-notice">
+                    ✨ Benda telah digabungkan! Hitung totalnya dan pilih jawaban di bawah:
+                </div>
+
+                <!-- SOAL ANGKA & PILIHAN JAWABAN -->
+                <div class="equation-container locked" id="equation-container">
+                    <div class="equation-display">
+                        <span id="num-a">0</span> + <span id="num-b">0</span> = <span id="num-result" class="result-placeholder">?</span>
+                    </div>
+
+                    <div class="answers-grid" id="answers-grid">
+                        <!-- Opsi jawaban dimasukkan via JS -->
+                    </div>
+                </div>
+
+            </main>
+        </section>
+
+
+        <!-- MODAL FEEDBACK SOAL (BENAR / SALAH) -->
+        <div class="overlay hidden" id="feedback-overlay">
+            <div class="modal-card" id="feedback-card">
+                <div class="feedback-symbol" id="feedback-symbol">⭐</div>
+                <h2 class="feedback-title" id="feedback-title">Hebat!</h2>
+                <p class="feedback-sub" id="feedback-sub">Jawaban kamu tepat!</p>
+                <button class="btn-action btn-primary" id="btn-next-question">Soal Berikutnya ➔</button>
+            </div>
+        </div>
+
+
+        <!-- ==========================================================
+             HALAMAN HASIL LEVEL (ANTAR LEVEL)
+             ========================================================== -->
+        <section class="screen-view hidden" id="screen-level-result">
+            <div class="card-box text-center">
+                <h1 class="card-title text-success" id="level-result-title">LEVEL 1 SELESAI</h1>
+                <div class="stars-summary" id="level-stars-display">⭐⭐⭐⭐⭐</div>
+
+                <div class="stats-summary-grid">
+                    <div class="summary-item correct-box">
+                        <span class="summary-value" id="lvl-res-correct">5</span>
+                        <span class="summary-label">Benar</span>
+                    </div>
+                    <div class="summary-item wrong-box">
+                        <span class="summary-value" id="lvl-res-wrong">0</span>
+                        <span class="summary-label">Salah</span>
+                    </div>
+                    <div class="summary-item score-box">
+                        <span class="summary-value" id="lvl-res-score">100</span>
+                        <span class="summary-label">Nilai Level</span>
+                    </div>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-action btn-primary" id="btn-next-level">Lanjut ke Level Berikutnya ➔</button>
+                    <button class="btn-action btn-secondary" id="btn-menu-from-level">🏠 Menu Utama</button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==========================================================
+             HALAMAN HASIL AKHIR GAME (SETELAH LEVEL 4)
+             ========================================================== -->
+        <section class="screen-view hidden" id="screen-final-result">
+            <div class="card-box text-center">
+                <h1 class="card-title text-primary">SELAMAT! 🎉</h1>
+                <p class="card-subtitle">Kamu telah menyelesaikan seluruh tahapan Petualangan Tambah Ceria!</p>
+
+                <div class="stars-summary" id="final-stars-display">⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐</div>
+
+                <div class="stats-summary-grid">
+                    <div class="summary-item score-box">
+                        <span class="summary-value" id="final-score">100</span>
+                        <span class="summary-label">Total Skor</span>
+                    </div>
+                    <div class="summary-item correct-box">
+                        <span class="summary-value" id="final-correct">20</span>
+                        <span class="summary-label">Total Benar</span>
+                    </div>
+                    <div class="summary-item wrong-box">
+                        <span class="summary-value" id="final-wrong">0</span>
+                        <span class="summary-label">Total Salah</span>
+                    </div>
+                    <div class="summary-item percent-box">
+                        <span class="summary-value" id="final-percent">100%</span>
+                        <span class="summary-label">Persentase</span>
+                    </div>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-action btn-primary" id="btn-restart-game">🎮 Main Lagi</button>
+                    <button class="btn-action btn-secondary" id="btn-menu-from-final">🏠 Menu Utama</button>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
