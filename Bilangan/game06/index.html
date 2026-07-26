@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rumah Nilai Tempat - Bantuan Visual</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Tombol Kembali yang Sudah Terisolasi Full Style -->
+<a href="../index.html" style="
+  position: fixed !important;
+  top: 15px !important;
+  left: 15px !important;
+  z-index: 999999 !important;
+  background-color: #ff4757 !important;
+  color: #ffffff !important;
+  padding: 10px 18px !important;
+  border-radius: 25px !important;
+  text-decoration: none !important;
+  font-family: 'Comic Sans MS', 'Fredoka', sans-serif !important;
+  font-weight: bold !important;
+  font-size: 14px !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+">🏠 Kembali ke Menu</a>
+
+</div>
+
+    <div class="game-container">
+
+        <!-- ================= 1. HALAMAN PEMBUKA ================= -->
+        <section id="screen-start" class="screen active">
+            <div class="header-banner">
+                <span class="badge-icon">🏠</span>
+                <h1>Rumah Nilai Tempat</h1>
+            </div>
+            
+            <p class="subtitle">Belajar nilai tempat dengan warna visual konsisten! Cocokkan digit angka ke rumah yang warnanya sama!</p>
+            
+            <!-- Ilustrasi Visual 3 Rumah & Warna Digit -->
+            <div class="hero-illustration">
+                <svg viewBox="0 0 330 110" width="100%" height="110" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Rumah Ratusan (Merah) -->
+                    <path d="M 15 45 L 55 15 L 95 45 L 95 95 L 15 95 Z" fill="#E53935" stroke="#B71C1C" stroke-width="3"/>
+                    <rect x="35" y="55" width="40" height="40" rx="8" fill="#FFF"/>
+                    <text x="55" y="83" font-size="28" font-weight="bold" fill="#E53935" text-anchor="middle">4</text>
+                    <text x="55" y="38" font-size="12" font-weight="bold" fill="#FFF" text-anchor="middle">Ratusan</text>
+
+                    <!-- Rumah Puluhan (Kuning) -->
+                    <path d="M 125 45 L 165 15 L 205 45 L 205 95 L 125 95 Z" fill="#FBC02D" stroke="#F57F17" stroke-width="3"/>
+                    <rect x="145" y="55" width="40" height="40" rx="8" fill="#FFF"/>
+                    <text x="165" y="83" font-size="28" font-weight="bold" fill="#F57F17" text-anchor="middle">8</text>
+                    <text x="165" y="38" font-size="12" font-weight="bold" fill="#FFF" text-anchor="middle">Puluhan</text>
+
+                    <!-- Rumah Satuan (Biru) -->
+                    <path d="M 235 45 L 275 15 L 315 45 L 315 95 L 235 95 Z" fill="#1E88E5" stroke="#0D47A1" stroke-width="3"/>
+                    <rect x="255" y="55" width="40" height="40" rx="8" fill="#FFF"/>
+                    <text x="275" y="83" font-size="28" font-weight="bold" fill="#1E88E5" text-anchor="middle">2</text>
+                    <text x="275" y="38" font-size="12" font-weight="bold" fill="#FFF" text-anchor="middle">Satuan</text>
+                </svg>
+            </div>
+
+            <button id="btn-start" class="btn btn-primary btn-large">
+                <span class="btn-icon">🚀</span> MULAI MAIN
+            </button>
+        </section>
+
+        <!-- ================= 2. HALAMAN PETUNJUK ================= -->
+        <section id="screen-instructions" class="screen">
+            <h2>📜 Petunjuk Bermain</h2>
+            
+            <div class="instruction-list">
+                <div class="instruction-item">
+                    <span class="step-num">1</span>
+                    <p>Lihat warna petunjuk nilai tempat: <br>
+                       🔴 <b>Ratusan = Merah</b> | 🟨 <b>Puluhan = Kuning</b> | 🔵 <b>Satuan = Biru</b>
+                    </p>
+                </div>
+                <div class="instruction-item">
+                    <span class="step-num">2</span>
+                    <p>Tarik kartu digit besar (🔴4, 🟨8, 🔵2) ke rumah yang warnanya sesuai. 🖐️</p>
+                </div>
+                <div class="instruction-item">
+                    <span class="step-num">3</span>
+                    <p>Tekan tombol <b>PERIKSA</b>. Jika ada yang salah, digit akan kembali untuk diperbaiki! 🔄</p>
+                </div>
+            </div>
+
+            <button id="btn-play" class="btn btn-success btn-large">
+                <span class="btn-icon">PLAY</span> SIAP MAIN!
+            </button>
+        </section>
+
+        <!-- ================= 3. HALAMAN PERMAINAN ================= -->
+        <section id="screen-game" class="screen">
+            
+            <!-- Top Bar: Status Soal & Skor -->
+            <div class="info-bar">
+                <div class="info-card">
+                    <span class="info-label">Soal</span>
+                    <span id="question-progress-text" class="info-value">1 / 10</span>
+                </div>
+                <div class="info-card">
+                    <span class="info-label">Skor</span>
+                    <span id="current-score" class="info-value">0</span>
+                </div>
+            </div>
+
+            <div class="progress-bar-container">
+                <div id="progress-bar-fill" class="progress-bar-fill"></div>
+            </div>
+
+            <!-- Tampilan Bilangan Utama & Kartu Sumber Drag -->
+            <div class="number-display-card">
+                <div class="instruction-header">
+                    <span class="instruction-mini">Bilangan:</span>
+                    <!-- Tampilan Bilangan Gabungan Berwarna (Contoh: 🔴4 🟨8 🔵2) -->
+                    <div id="colored-number-preview" class="colored-number-preview">
+                        <!-- Di-render oleh JS -->
+                    </div>
+                </div>
+                
+                <!-- Sumber Kartu Digit Besar -->
+                <div id="digit-source-container" class="digit-source-container">
+                    <!-- Kartu digit di-render dinamis oleh JS -->
+                </div>
+            </div>
+
+            <!-- Target Drop: 3 Rumah Nilai Tempat Berwarna -->
+            <div class="houses-container">
+                <!-- 🟥 Rumah Ratusan -->
+                <div class="house-card house-hundreds" id="house-hundreds" data-place="hundreds">
+                    <div class="house-roof">🔴 RUMAH RATUSAN</div>
+                    <div class="house-body drop-zone" id="zone-hundreds" data-place="hundreds">
+                        <span class="placeholder-text">Tarik 🔴 ke sini</span>
+                    </div>
+                </div>
+
+                <!-- 🟨 Rumah Puluhan -->
+                <div class="house-card house-tens" id="house-tens" data-place="tens">
+                    <div class="house-roof">🟨 RUMAH PULUHAN</div>
+                    <div class="house-body drop-zone" id="zone-tens" data-place="tens">
+                        <span class="placeholder-text">Tarik 🟨 ke sini</span>
+                    </div>
+                </div>
+
+                <!-- 🟦 Rumah Satuan -->
+                <div class="house-card house-units" id="house-units" data-place="units">
+                    <div class="house-roof">🔵 RUMAH SATUAN</div>
+                    <div class="house-body drop-zone" id="zone-units" data-place="units">
+                        <span class="placeholder-text">Tarik 🔵 ke sini</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Controls -->
+            <div class="action-bar">
+                <button id="btn-check" class="btn btn-success btn-large">
+                    <span class="btn-icon">✔️</span> PERIKSA JAWABAN
+                </button>
+            </div>
+        </section>
+
+        <!-- ================= OVERLAY FEEDBACK VISUAL (KHUSUS TULI) ================= -->
+        <div id="feedback-overlay" class="feedback-overlay hidden">
+            <div id="feedback-card" class="feedback-card">
+                <div id="feedback-icon" class="feedback-icon">✔️</div>
+                <div id="feedback-text" class="feedback-text">Hebat!</div>
+                <p id="feedback-subtext" class="feedback-subtext">Jawaban Benar.</p>
+                <button id="btn-feedback-action" class="btn btn-primary btn-large">
+                    SOAL BERIKUTNYA ➔
+                </button>
+            </div>
+        </div>
+
+        <!-- ================= 4. HALAMAN HASIL ================= -->
+        <section id="screen-result" class="screen">
+            <h2>🎉 Permainan Selesai! 🎉</h2>
+            
+            <div id="motivation-badge" class="motivation-badge">
+                <span id="motivation-icon">🏆</span>
+                <p id="motivation-text">Hebat! Kamu Sangat Pintar!</p>
+            </div>
+
+            <!-- Rincian Evaluasi Skor -->
+            <div class="result-card">
+                <div class="result-row blue">
+                    <span class="result-label">Total Skor</span>
+                    <span id="final-score" class="result-value">100</span>
+                </div>
+                <div class="result-row green">
+                    <span class="result-label">✔️ Tepat Pertama Coba</span>
+                    <span id="final-correct" class="result-value">10 / 10</span>
+                </div>
+                <div class="result-row red">
+                    <span class="result-label">✖️ Percobaan Ulang</span>
+                    <span id="final-wrong" class="result-value">0</span>
+                </div>
+                <div class="result-row yellow">
+                    <span class="result-label">📊 Keberhasilan</span>
+                    <span id="final-percentage" class="result-value">100%</span>
+                </div>
+            </div>
+
+            <button id="btn-restart" class="btn btn-warning btn-large">
+                <span class="btn-icon">🔄</span> MAIN LAGI
+            </button>
+            <button id="btn-home" class="btn btn-primary btn-large">
+                <span class="btn-icon">🏠</span> MENU UTAMA
+            </button>
+        </section>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

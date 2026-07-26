@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Edukasi Matematika - Bilangan 1–1000</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+  <div class="main-container">
+    <!-- Header / Title Section -->
+    <header class="header">
+      <div class="logo">🎮</div>
+      <h1>Bilangan 1–1000</h1>
+      <p class="subtitle">Pilih permainan untuk mulai belajar!</p>
+    </header>
+
+    <!-- Game Selection Grid -->
+    <main class="game-grid">
+      <a href="game01/index.html" class="game-card card-1">
+        <span class="badge">①</span>
+        <span class="game-title">Bilangan 1–10</span>
+      </a>
+
+      <a href="game02/index.html" class="game-card card-2">
+        <span class="badge">②</span>
+        <span class="game-title">Bilangan 11–20</span>
+      </a>
+
+      <a href="game03/index.html" class="game-card card-3">
+        <span class="badge">③</span>
+        <span class="game-title">Bilangan 21–100</span>
+      </a>
+
+      <a href="game04/index.html" class="game-card card-4">
+        <span class="badge">④</span>
+        <span class="game-title">Bilangan 101–500</span>
+      </a>
+
+      <a href="game05/index.html" class="game-card card-5">
+        <span class="badge">⑤</span>
+        <span class="game-title">Bilangan 501–1000</span>
+      </a>
+
+      <a href="game06/index.html" class="game-card card-6">
+        <span class="badge">⑥</span>
+        <span class="game-title">Nilai Tempat</span>
+      </a>
+
+      <a href="game07/index.html" class="game-card card-7">
+        <span class="badge">⑦</span>
+        <span class="game-title">Membandingkan Bilangan</span>
+      </a>
+
+      <a href="game08/index.html" class="game-card card-8">
+        <span class="badge">⑧</span>
+        <span class="game-title">Mengurutkan Bilangan</span>
+      </a>
+    </main>
+
+    <!-- Footer Action -->
+    <footer class="footer">
+      <button type="button" class="btn-exit" onclick="keluarAplikasi()">❌ Keluar</button>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js');
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tantangan Bilangan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+<!-- Tombol Kembali yang Sudah Terisolasi Full Style -->
+<a href="../index.html" style="
+  position: fixed !important;
+  top: 15px !important;
+  left: 15px !important;
+  z-index: 999999 !important;
+  background-color: #ff4757 !important;
+  color: #ffffff !important;
+  padding: 10px 18px !important;
+  border-radius: 25px !important;
+  text-decoration: none !important;
+  font-family: 'Comic Sans MS', 'Fredoka', sans-serif !important;
+  font-weight: bold !important;
+  font-size: 14px !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+">🏠 Kembali ke Menu</a>
+
+</div>
+
+<div class="game-container">
+
+        <!-- ================= 1. HALAMAN PEMBUKA ================= -->
+        <section id="screen-start" class="screen active">
+            <div class="header-banner">
+                <span class="badge-icon">🎯</span>
+                <h1>Tantangan Bilangan</h1>
+            </div>
+            
+            <p class="subtitle">Mari belajar mengenal, membaca, memilih, dan mengurutkan bilangan 101–500!</p>
+            
+            <!-- Ilustrasi Visual Ceria (Angka 101-500) -->
+            <div class="hero-illustration">
+                <svg viewBox="0 0 320 110" width="100%" height="110" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="15" y="15" width="80" height="80" rx="16" fill="#0288D1" stroke="#01579B" stroke-width="3"/>
+                    <text x="55" y="63" font-size="28" font-weight="bold" fill="#FFF" text-anchor="middle">104</text>
+                    
+                    <rect x="120" y="15" width="80" height="80" rx="16" fill="#4CAF50" stroke="#1B5E20" stroke-width="3"/>
+                    <text x="160" y="63" font-size="28" font-weight="bold" fill="#FFF" text-anchor="middle">276</text>
+                    
+                    <rect x="225" y="15" width="80" height="80" rx="16" fill="#FF9800" stroke="#E65100" stroke-width="3"/>
+                    <text x="265" y="63" font-size="28" font-weight="bold" fill="#FFF" text-anchor="middle">498</text>
+                </svg>
+            </div>
+
+            <button id="btn-start" class="btn btn-primary btn-large">
+                <span class="btn-icon">🚀</span> MULAI MAIN
+            </button>
+        </section>
+
+        <!-- ================= 2. HALAMAN PETUNJUK ================= -->
+        <section id="screen-instructions" class="screen">
+            <h2>📜 Petunjuk Bermain</h2>
+            
+            <div class="instruction-list">
+                <div class="instruction-item">
+                    <span class="step-num">1</span>
+                    <p>Baca soal dan perhatikan angka dengan cermat. 👁️</p>
+                </div>
+                <div class="instruction-item">
+                    <span class="step-num">2</span>
+                    <p>Pilih 1 jawaban yang paling benar. 👆</p>
+                </div>
+                <div class="instruction-item">
+                    <span class="step-num">3</span>
+                    <p>Jika salah, kamu boleh memilih jawaban lain! 🔄</p>
+                </div>
+                <div class="instruction-item">
+                    <span class="step-num">4</span>
+                    <p>Selesaikan semua 10 soal untuk melihat skormu! 🏆</p>
+                </div>
+            </div>
+
+            <button id="btn-play" class="btn btn-success btn-large">
+                <span class="btn-icon">PLAY</span> SIAP MAIN!
+            </button>
+        </section>
+
+        <!-- ================= 3. HALAMAN PERMAINAN (QUIZ) ================= -->
+        <section id="screen-quiz" class="screen">
+            
+            <!-- Info Bar Top & Progress -->
+            <div class="info-bar">
+                <div class="info-card">
+                    <span class="info-label">Soal</span>
+                    <span id="question-progress" class="info-value">1 / 10</span>
+                </div>
+                <div class="info-card">
+                    <span class="info-label">Skor</span>
+                    <span id="current-score" class="info-value">0</span>
+                </div>
+            </div>
+
+            <div class="progress-bar-container">
+                <div id="progress-bar-fill" class="progress-bar-fill"></div>
+            </div>
+
+            <!-- Card Tempat Pertanyaan -->
+            <div class="question-card">
+                <span id="category-badge" class="category-badge">Mengenali Bilangan</span>
+                <p id="question-text" class="question-text">Pilih angka 328</p>
+                <div id="question-highlight" class="question-highlight hidden">417</div>
+            </div>
+
+            <!-- Status Feedback Jawaban -->
+            <div id="quiz-feedback" class="quiz-feedback hidden">
+                <span id="feedback-status-icon">✅</span>
+                <span id="feedback-status-text">Benar!</span>
+            </div>
+
+            <!-- Grid 4 Pilihan Jawaban -->
+            <div id="options-grid" class="options-grid">
+                <!-- Pilihan jawaban di-generate dinamis oleh JS -->
+            </div>
+        </section>
+
+        <!-- ================= 4. HALAMAN HASIL ================= -->
+        <section id="screen-result" class="screen">
+            <h2>🎉 Permainan Selesai! 🎉</h2>
+            
+            <div id="motivation-badge" class="motivation-badge">
+                <span id="motivation-icon">🏆</span>
+                <p id="motivation-text">Hebat!</p>
+            </div>
+
+            <!-- Card Rincian Skor -->
+            <div class="result-card">
+                <div class="result-row blue">
+                    <span class="result-label">Total Skor</span>
+                    <span id="final-score" class="result-value">100</span>
+                </div>
+                <div class="result-row green">
+                    <span class="result-label">✔️ Jumlah Benar</span>
+                    <span id="final-correct" class="result-value">10</span>
+                </div>
+                <div class="result-row red">
+                    <span class="result-label">✖️ Salah / Mencoba Ulang</span>
+                    <span id="final-wrong" class="result-value">0</span>
+                </div>
+                <div class="result-row yellow">
+                    <span class="result-label">📊 Persentase</span>
+                    <span id="final-percentage" class="result-value">100%</span>
+                </div>
+            </div>
+
+            <button id="btn-restart" class="btn btn-warning btn-large">
+                <span class="btn-icon">🔄</span> MAIN LAGI
+            </button>
+            <button id="btn-home" class="btn btn-primary btn-large">
+                <span class="btn-icon">🏠</span> MENU UTAMA
+            </button>
+        </section>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

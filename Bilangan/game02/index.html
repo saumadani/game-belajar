@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kereta Angka 11–20</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Tombol Kembali yang Sudah Terisolasi Full Style -->
+<a href="../index.html" style="
+  position: fixed !important;
+  top: 15px !important;
+  left: 15px !important;
+  z-index: 999999 !important;
+  background-color: #ff4757 !important;
+  color: #ffffff !important;
+  padding: 10px 18px !important;
+  border-radius: 25px !important;
+  text-decoration: none !important;
+  font-family: 'Comic Sans MS', 'Fredoka', sans-serif !important;
+  font-weight: bold !important;
+  font-size: 14px !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+">🏠 Kembali ke Menu</a>
+
+</div>
+
+    <div class="game-container">
+
+        <!-- ================= 1. HALAMAN PEMBUKA ================= -->
+        <section id="screen-start" class="screen active">
+            <div class="header-banner">
+                <span class="badge-icon">🚂</span>
+                <h1>Kereta Angka 11–20</h1>
+            </div>
+            
+            <p class="subtitle">Ayo susun gerbong kereta sesuai urutan angka dari yang terkecil ke terbesar! 11 ➔ 20</p>
+            
+            <!-- Ilustrasi Animasi Kereta SVG -->
+            <div class="hero-train-illustration">
+                <svg viewBox="0 0 400 120" width="100%" height="120" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Rel -->
+                    <rect x="0" y="100" width="400" height="8" fill="#8D6E63"/>
+                    <rect x="20" y="108" width="10" height="12" fill="#5D4037"/>
+                    <rect x="80" y="108" width="10" height="12" fill="#5D4037"/>
+                    <rect x="140" y="108" width="10" height="12" fill="#5D4037"/>
+                    <rect x="200" y="108" width="10" height="12" fill="#5D4037"/>
+                    <rect x="260" y="108" width="10" height="12" fill="#5D4037"/>
+                    <rect x="320" y="108" width="10" height="12" fill="#5D4037"/>
+                    <!-- Lokomotif -->
+                    <path d="M 30,50 L 80,50 L 80,30 L 110,30 L 110,90 L 30,90 Z" fill="#0288D1"/>
+                    <rect x="90" y="40" width="15" height="20" fill="#E0F7FA"/>
+                    <circle cx="50" cy="90" r="12" fill="#424242"/>
+                    <circle cx="90" cy="90" r="12" fill="#424242"/>
+                    <!-- Cerobong Asap -->
+                    <rect x="40" y="30" width="12" height="20" fill="#01579B"/>
+                    <circle cx="46" cy="20" r="8" fill="#B0BEC5" opacity="0.7"/>
+                    <!-- Gerbong 1 -->
+                    <rect x="130" y="55" width="70" height="35" rx="8" fill="#FF9800"/>
+                    <circle cx="145" cy="90" r="10" fill="#424242"/>
+                    <circle cx="185" cy="90" r="10" fill="#424242"/>
+                    <text x="165" y="78" font-size="20" font-weight="bold" fill="#FFF" text-anchor="middle">11</text>
+                    <!-- Gerbong 2 -->
+                    <rect x="215" y="55" width="70" height="35" rx="8" fill="#4CAF50"/>
+                    <circle cx="230" cy="90" r="10" fill="#424242"/>
+                    <circle cx="270" cy="90" r="10" fill="#424242"/>
+                    <text x="250" y="78" font-size="20" font-weight="bold" fill="#FFF" text-anchor="middle">12</text>
+                    <!-- Sambungan -->
+                    <rect x="110" y="70" width="20" height="6" fill="#757575"/>
+                    <rect x="200" y="70" width="15" height="6" fill="#757575"/>
+                </svg>
+            </div>
+
+            <button id="btn-start" class="btn btn-primary btn-large">
+                <span class="btn-icon">🚀</span> MULAI MAIN
+            </button>
+        </section>
+
+        <!-- ================= 2. HALAMAN PETUNJUK ================= -->
+        <section id="screen-instructions" class="screen">
+            <h2>📜 Petunjuk Bermain</h2>
+            
+            <div class="instruction-list">
+                <div class="instruction-item">
+                    <span class="step-num">1</span>
+                    <p>Lihat gerbong kereta yang angkanya acak. 👁️</p>
+                </div>
+                <div class="instruction-item">
+                    <span class="step-num">2</span>
+                    <p>Tarik (drag) gerbong lalu lepas (drop) untuk mengurutkan dari <b>11 sampai 20</b>. 🖐️</p>
+                </div>
+                <div class="instruction-item">
+                    <span class="step-num">3</span>
+                    <p>Tekan tombol <b>PERIKSA</b> untuk mengecek jawabanmu. ✔️</p>
+                </div>
+            </div>
+
+            <button id="btn-play" class="btn btn-success btn-large">
+                <span class="btn-icon">PLAY</span> SIAP MAIN!
+            </button>
+        </section>
+
+        <!-- ================= 3. HALAMAN PERMAINAN ================= -->
+        <section id="screen-game" class="screen">
+            
+            <!-- Top Status Bar -->
+            <div class="info-bar">
+                <div class="info-card">
+                    <span class="info-label">Percobaan</span>
+                    <span id="attempt-count" class="info-value">0</span>
+                </div>
+                <div class="info-card">
+                    <span class="info-label">Waktu</span>
+                    <span id="timer-display" class="info-value">00:00</span>
+                </div>
+            </div>
+
+            <div class="instruction-banner">
+                <p>Urutkan gerbong dari <b>11 ke 20</b>! 🚂</p>
+            </div>
+
+            <!-- Track / Rel Kereta Tempat Susunan Gerbong -->
+            <div class="train-track-container">
+                <!-- Kepala Lokomotif (Statis) -->
+                <div class="locomotive-head">
+                    <div class="loco-chimney"></div>
+                    <div class="loco-body">
+                        <span class="loco-window"></span>
+                        <span class="loco-title">11-20</span>
+                    </div>
+                    <div class="loco-wheels">
+                        <span class="wheel"></span>
+                        <span class="wheel"></span>
+                    </div>
+                </div>
+
+                <!-- Area Gerbong Interaktif (Drag & Drop Target/Source) -->
+                <div id="wagons-container" class="wagons-container">
+                    <!-- Gerbong di-generate dinamis oleh JS -->
+                </div>
+            </div>
+
+            <div class="action-bar">
+                <button id="btn-check" class="btn btn-success btn-large">
+                    <span class="btn-icon">✔️</span> PERIKSA JAWABAN
+                </button>
+            </div>
+        </section>
+
+        <!-- ================= OVERLAY FEEDBACK VISUAL (KHUSUS TULI) ================= -->
+        <div id="feedback-overlay" class="feedback-overlay hidden">
+            <div id="feedback-card" class="feedback-card">
+                <div id="feedback-icon" class="feedback-icon">✔️</div>
+                <div id="feedback-text" class="feedback-text">Hebat!</div>
+                <p id="feedback-subtext" class="feedback-subtext">Urutan angkamu sudah benar!</p>
+                <button id="btn-feedback-action" class="btn btn-primary btn-large">
+                    LANJUT ➔
+                </button>
+            </div>
+        </div>
+
+        <!-- ================= 4. HALAMAN HASIL ================= -->
+        <section id="screen-result" class="screen">
+            <h2>🎉 Permainan Selesai! 🎉</h2>
+            
+            <div id="motivation-badge" class="motivation-badge">
+                <span id="motivation-icon">🏆</span>
+                <p id="motivation-text">Hebat! Kamu Sangat Pintar!</p>
+            </div>
+
+            <!-- Card Rincian Skor -->
+            <div class="result-card">
+                <div class="result-row blue">
+                    <span class="result-label">Total Skor</span>
+                    <span id="final-score" class="result-value">100</span>
+                </div>
+                <div class="result-row green">
+                    <span class="result-label">✔️ Percobaan</span>
+                    <span id="final-attempts" class="result-value">1 Kali</span>
+                </div>
+                <div class="result-row orange">
+                    <span class="result-label">⏱️ Waktu Selesai</span>
+                    <span id="final-time" class="result-value">00:45</span>
+                </div>
+                <div class="result-row purple">
+                    <span class="result-label">📊 Keberhasilan</span>
+                    <span id="final-percentage" class="result-value">100%</span>
+                </div>
+            </div>
+
+            <button id="btn-restart" class="btn btn-warning btn-large">
+                <span class="btn-icon">🔄</span> MAIN LAGI
+            </button>
+            <button id="btn-home" class="btn btn-primary btn-large">
+                <span class="btn-icon">🏠</span> MENU UTAMA
+            </button>
+        </section>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

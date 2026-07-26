@@ -1,0 +1,486 @@
+/* ==========================================================================
+   RESET & VARIABEL GLOBAL (Aksesibilitas Tuli, Kontras Tinggi, Teks Besar)
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Comic Sans MS', 'Chalkboard SE', 'Fredoka', 'Arial', sans-serif;
+    user-select: none;
+}
+
+:root {
+    --bg-main: #E0F7FA;
+    --card-bg: #FFFFFF;
+    --primary: #0288D1;
+    --primary-dark: #01579B;
+    --secondary: #FFF176;
+    --accent-orange: #FF9800;
+    --success: #2E7D32;
+    --success-bg: #E8F5E9;
+    --error: #C62828;
+    --error-bg: #FFEBEE;
+    --text-dark: #212121;
+    
+    --border-radius: 24px;
+    --shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 12px;
+}
+
+.game-container {
+    background-color: var(--card-bg);
+    width: 100%;
+    max-width: 860px;
+    min-height: 640px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    border: 4px solid #B2EBF2;
+}
+
+.screen {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.screen.active {
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1 { font-size: 30px; color: var(--primary-dark); margin-bottom: 8px; }
+h2 { font-size: 26px; color: var(--primary-dark); margin-bottom: 16px; }
+p { font-size: 20px; color: var(--text-dark); line-height: 1.4; }
+.subtitle { font-size: 20px; color: #455A64; margin-bottom: 20px; max-width: 640px; }
+
+/* ==========================================================================
+   TOMBOL BESAR (Aksesibilitas Touch Screen)
+   ========================================================================== */
+.btn {
+    border: none;
+    outline: none;
+    border-radius: 50px;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 16px 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    box-shadow: 0 6px 0px rgba(0,0,0,0.2);
+    transition: all 0.1s ease;
+    margin-top: 12px;
+    min-height: 60px;
+}
+
+.btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 2px 0px rgba(0,0,0,0.2);
+}
+
+.btn-large { width: 85%; max-width: 360px; }
+.btn-primary { background-color: var(--primary); color: #FFFFFF; }
+.btn-success { background-color: #4CAF50; color: #FFFFFF; }
+.btn-warning { background-color: var(--accent-orange); color: #FFFFFF; }
+
+.header-banner { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.badge-icon { font-size: 40px; }
+.hero-illustration { width: 100%; max-width: 400px; margin: 12px 0; }
+
+/* ==========================================================================
+   PETUNJUK & INFO BAR
+   ========================================================================== */
+.instruction-list {
+    width: 100%;
+    max-width: 640px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.instruction-item {
+    background-color: #F1F8E9;
+    border: 2px solid #C8E6C9;
+    padding: 14px 16px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    text-align: left;
+}
+
+.step-num {
+    background-color: var(--primary);
+    color: #FFFFFF;
+    font-size: 22px;
+    font-weight: bold;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.info-bar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.info-card {
+    background-color: #FFF8E1;
+    border: 2px solid var(--secondary);
+    padding: 6px 16px;
+    border-radius: 16px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.info-label { font-size: 18px; color: #5D4037; font-weight: bold; }
+.info-value { font-size: 22px; color: var(--primary-dark); font-weight: bold; }
+
+.progress-bar-container {
+    width: 100%;
+    height: 14px;
+    background-color: #ECEFF1;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    width: 10%;
+    background-color: var(--accent-orange);
+    transition: width 0.3s ease;
+}
+
+/* ==========================================================================
+   BANNER INSTRUKSI SOAL (NAIK / TURUN)
+   ========================================================================== */
+.direction-banner {
+    width: 100%;
+    padding: 12px 20px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 20px;
+    border: 3px solid;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.direction-banner.mode-ascending {
+    background-color: #E8F5E9;
+    border-color: #2E7D32;
+    color: #1B5E20;
+}
+
+.direction-banner.mode-descending {
+    background-color: #FFF3E0;
+    border-color: #E65100;
+    color: #E65100;
+}
+
+.direction-icon {
+    font-size: 36px;
+}
+
+.direction-text-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.direction-type {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.direction-sub {
+    font-size: 18px;
+    font-weight: bold;
+    opacity: 0.9;
+}
+
+/* ==========================================================================
+   LINTASAN BALAP & MOBIL SORTABLE (DRAG & DROP)
+   ========================================================================== */
+.race-track-area {
+    width: 100%;
+    background-color: #37474F;
+    border: 4px solid #263238;
+    border-radius: 24px;
+    padding: 24px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    margin-bottom: 20px;
+    /* Garis Marka Jalan Putih */
+    background-image: linear-gradient(90deg, #FFFFFF 50%, transparent 50%);
+    background-size: 40px 4px;
+    background-repeat: repeat-x;
+    background-position: center;
+}
+
+.sortable-track {
+    display: flex;
+    gap: 12px;
+    width: calc(100% - 50px);
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* KARTU MOBIL BALAP SORTABLE */
+.car-card {
+    flex: 1;
+    max-width: 110px;
+    height: 100px;
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: grab;
+    position: relative;
+    box-shadow: 0 6px 0px rgba(0,0,0,0.3);
+    transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+    touch-action: none;
+    z-index: 10;
+}
+
+.car-card:hover {
+    transform: translateY(-6px);
+}
+
+.car-card.dragging {
+    opacity: 0.4;
+    cursor: grabbing;
+}
+
+.car-card.drag-over {
+    transform: scale(1.08);
+    border-style: dashed !important;
+}
+
+/* Kustomisasi Warna Warni Mobil */
+.car-card:nth-child(1) { background-color: #FF5252; border: 3px solid #B71C1C; }
+.car-card:nth-child(2) { background-color: #FFB300; border: 3px solid #F57F17; }
+.car-card:nth-child(3) { background-color: #4CAF50; border: 3px solid #1B5E20; }
+.car-card:nth-child(4) { background-color: #0288D1; border: 3px solid #01579B; }
+.car-card:nth-child(5) { background-color: #AB47BC; border: 3px solid #4A148C; }
+.car-card:nth-child(6) { background-color: #FF7043; border: 3px solid #D84315; }
+
+.car-number {
+    font-size: 32px;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-shadow: 1px 2px 0px rgba(0,0,0,0.4);
+    z-index: 2;
+}
+
+/* Roda Mobil Visual */
+.car-wheels {
+    position: absolute;
+    bottom: -8px;
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.car-wheel {
+    width: 18px;
+    height: 18px;
+    background-color: #212121;
+    border: 3px solid #B0BEC5;
+    border-radius: 50%;
+}
+
+/* Garis Finis */
+.finish-line-banner {
+    font-size: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 8px;
+    border-left: 4px dashed #FFF;
+    height: 100px;
+}
+
+/* ANIMASI KENDARAAN MELAJU KE FINIS SAAT BENAR */
+.car-card.drive-finish {
+    animation: driveToFinish 1.2s forwards cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+@keyframes driveToFinish {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(30px); }
+    100% { transform: translateX(80px); opacity: 0.8; }
+}
+
+/* STATE EVALUASI VALIDASI (HIJAU / GARIS MERAH) */
+.car-card.eval-correct {
+    background-color: #4CAF50 !important;
+    border: 4px solid #1B5E20 !important;
+}
+
+.car-card.eval-wrong {
+    border: 4px solid #C62828 !important;
+    animation: shake 0.3s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
+}
+
+.action-bar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* ==========================================================================
+   FEEDBACK OVERLAY & HASIL
+   ========================================================================== */
+.feedback-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 100;
+    border-radius: var(--border-radius);
+    animation: fadeIn 0.2s ease;
+}
+
+.feedback-overlay.hidden { display: none; }
+
+.feedback-card {
+    background-color: var(--card-bg);
+    padding: 24px;
+    border-radius: 24px;
+    width: 85%; max-width: 380px;
+    display: flex; flex-direction: column; align-items: center;
+    box-shadow: var(--shadow);
+}
+
+.feedback-card.correct { background-color: var(--success-bg); border: 4px solid var(--success); }
+.feedback-card.wrong { background-color: var(--error-bg); border: 4px solid var(--error); }
+
+.feedback-icon { font-size: 72px; margin-bottom: 8px; }
+.feedback-text { font-size: 32px; font-weight: bold; margin-bottom: 6px; }
+.feedback-subtext { font-size: 18px; color: #455A64; margin-bottom: 16px; }
+
+.feedback-card.correct .feedback-text { color: var(--success); }
+.feedback-card.wrong .feedback-text { color: var(--error); }
+
+.motivation-badge {
+    background-color: #FFF9C4;
+    border: 2px solid #FBC02D;
+    padding: 16px;
+    border-radius: 16px;
+    margin-bottom: 16px;
+    width: 100%; max-width: 480px;
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+}
+
+#motivation-icon { font-size: 36px; }
+#motivation-text { font-size: 22px; font-weight: bold; color: #F57F17; }
+
+.result-card {
+    width: 100%; max-width: 480px;
+    background-color: #FAFAFA;
+    border: 2px solid #CFD8DC;
+    border-radius: 20px;
+    padding: 16px;
+    display: flex; flex-direction: column; gap: 10px;
+    margin-bottom: 16px;
+}
+
+.result-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 14px; border-radius: 12px; background-color: #FFFFFF;
+}
+
+.result-row.blue { background-color: #E1F5FE; }
+.result-row.green { background-color: var(--success-bg); }
+.result-row.red { background-color: var(--error-bg); }
+.result-row.yellow { background-color: #FFFDE7; }
+
+.result-label { font-size: 18px; font-weight: bold; }
+.result-value { font-size: 20px; font-weight: bold; color: var(--primary-dark); }
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (HP, Tablet, Laptop)
+   ========================================================================== */
+@media (max-width: 600px) {
+    .game-container { padding: 16px; min-height: 540px; }
+    h1 { font-size: 22px; }
+    h2 { font-size: 22px; }
+    p { font-size: 18px; }
+
+    /* Layout Responsive Lintasan di Layar HP */
+    .race-track-area {
+        padding: 16px 8px;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .sortable-track {
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .car-card {
+        min-width: 70px;
+        max-width: 80px;
+        height: 75px;
+    }
+
+    .car-number { font-size: 22px; }
+
+    .finish-line-banner {
+        height: auto;
+        border-left: none;
+        border-top: 3px dashed #FFF;
+        width: 100%;
+        padding-top: 4px;
+    }
+
+    .btn { font-size: 18px; padding: 12px 24px; min-height: 50px; }
+    .btn-large { width: 100%; }
+}

@@ -1,0 +1,448 @@
+/* ==========================================================================
+   RESET & VARIABEL GLOBAL (Aksesibilitas Tuli, Kontras Tinggi, Teks Besar)
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Comic Sans MS', 'Chalkboard SE', 'Fredoka', 'Arial', sans-serif;
+    user-select: none;
+}
+
+:root {
+    --bg-main: #E0F7FA;
+    --card-bg: #FFFFFF;
+    --primary: #0288D1;
+    --primary-dark: #01579B;
+    --secondary: #FFF176;
+    --accent-orange: #FF9800;
+    --success: #2E7D32;
+    --success-bg: #E8F5E9;
+    --error: #C62828;
+    --error-bg: #FFEBEE;
+    --text-dark: #212121;
+    --border-radius: 24px;
+    --shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 12px;
+}
+
+.game-container {
+    background-color: var(--card-bg);
+    width: 100%;
+    max-width: 840px;
+    min-height: 620px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    border: 4px solid #B2EBF2;
+}
+
+.screen {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.screen.active {
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1 { font-size: 30px; color: var(--primary-dark); margin-bottom: 8px; }
+h2 { font-size: 26px; color: var(--primary-dark); margin-bottom: 16px; }
+p { font-size: 20px; color: var(--text-dark); line-height: 1.4; }
+.subtitle { font-size: 20px; color: #455A64; margin-bottom: 20px; max-width: 600px; }
+
+/* ==========================================================================
+   TOMBOL BESAR (Aksesibilitas Layar Sentuh)
+   ========================================================================== */
+.btn {
+    border: none;
+    outline: none;
+    border-radius: 50px;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 16px 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    box-shadow: 0 6px 0px rgba(0,0,0,0.2);
+    transition: all 0.1s ease;
+    margin-top: 12px;
+    min-height: 60px;
+}
+
+.btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 2px 0px rgba(0,0,0,0.2);
+}
+
+.btn-large { width: 85%; max-width: 320px; }
+.btn-primary { background-color: var(--primary); color: #FFFFFF; }
+.btn-success { background-color: #4CAF50; color: #FFFFFF; }
+.btn-warning { background-color: var(--accent-orange); color: #FFFFFF; }
+
+.header-banner { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.badge-icon { font-size: 40px; }
+.hero-train-illustration { width: 100%; max-width: 480px; margin: 16px 0; }
+
+/* ==========================================================================
+   HALAMAN PETUNJUK
+   ========================================================================== */
+.instruction-list {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.instruction-item {
+    background-color: #F1F8E9;
+    border: 2px solid #C8E6C9;
+    padding: 16px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    text-align: left;
+}
+
+.step-num {
+    background-color: var(--primary);
+    color: #FFFFFF;
+    font-size: 22px;
+    font-weight: bold;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* ==========================================================================
+   INFO BAR & BANNER
+   ========================================================================== */
+.info-bar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.info-card {
+    background-color: #FFF8E1;
+    border: 2px solid var(--secondary);
+    padding: 8px 16px;
+    border-radius: 16px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.info-label { font-size: 18px; color: #5D4037; font-weight: bold; }
+.info-value { font-size: 22px; color: var(--primary-dark); font-weight: bold; }
+
+.instruction-banner {
+    background-color: #E8EAF6;
+    border: 2px solid #C5CAE9;
+    padding: 10px 20px;
+    border-radius: 16px;
+    margin-bottom: 16px;
+}
+
+/* ==========================================================================
+   AREA DRAG & DROP KERETA (LAYOUT RESPONSIVE)
+   ========================================================================== */
+.train-track-container {
+    width: 100%;
+    background: linear-gradient(180deg, #E1F5FE 0%, #B2EBF2 100%);
+    border: 3px solid #80DEEA;
+    border-radius: 20px;
+    padding: 20px 12px 30px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    position: relative;
+    margin-bottom: 16px;
+    /* Rel Kereta */
+    background-image: linear-gradient(90deg, #8D6E63 10px, transparent 10px);
+    background-size: 30px 8px;
+    background-repeat: repeat-x;
+    background-position: bottom 12px left 0;
+}
+
+/* Lokomotif */
+.locomotive-head {
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+    margin-bottom: 8px;
+}
+
+.loco-chimney {
+    width: 16px;
+    height: 24px;
+    background-color: #01579B;
+    border-radius: 4px 4px 0 0;
+    margin-right: -8px;
+    margin-bottom: 30px;
+}
+
+.loco-body {
+    width: 100px;
+    height: 55px;
+    background-color: #0288D1;
+    border-radius: 12px 12px 4px 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 8px;
+    box-shadow: 0 4px 0 #01579B;
+}
+
+.loco-window {
+    width: 24px;
+    height: 24px;
+    background-color: #E0F7FA;
+    border-radius: 6px;
+    border: 2px solid #01579B;
+}
+
+.loco-title {
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.loco-wheels {
+    position: absolute;
+    bottom: -10px;
+    left: 10px;
+    width: 80px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.wheel {
+    width: 22px;
+    height: 22px;
+    background-color: #424242;
+    border: 3px solid #E0E0E0;
+    border-radius: 50%;
+}
+
+/* Container Gerbong */
+.wagons-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+}
+
+/* Gerbong Kereta (Draggable Element) */
+.wagon {
+    width: 68px;
+    height: 72px;
+    background-color: #FF9800;
+    border: 3px solid #E65100;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: grab;
+    position: relative;
+    box-shadow: 0 6px 0 #E65100;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+    touch-action: none; /* Mencegah scroll layar saat drag di ponsel */
+}
+
+.wagon:hover {
+    transform: translateY(-4px);
+}
+
+.wagon.dragging {
+    opacity: 0.4;
+    cursor: grabbing;
+}
+
+.wagon.drag-over {
+    border: 3px dashed #2E7D32;
+    transform: scale(1.08);
+    background-color: #FFE0B2;
+}
+
+/* Variasi Warna Warna Ceria Gerbong */
+.wagon:nth-child(2n) { background-color: #4CAF50; border-color: #1B5E20; box-shadow: 0 6px 0 #1B5E20; }
+.wagon:nth-child(3n) { background-color: #AB47BC; border-color: #4A148C; box-shadow: 0 6px 0 #4A148C; }
+.wagon:nth-child(4n) { background-color: #EC407A; border-color: #880E4F; box-shadow: 0 6px 0 #880E4F; }
+.wagon:nth-child(5n) { background-color: #26A69A; border-color: #004D40; box-shadow: 0 6px 0 #004D40; }
+
+.wagon-number {
+    font-size: 28px;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-shadow: 1px 2px 0px rgba(0,0,0,0.3);
+}
+
+.wagon-wheels {
+    position: absolute;
+    bottom: -8px;
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.wagon-wheel {
+    width: 16px;
+    height: 16px;
+    background-color: #37474F;
+    border: 2px solid #CFD8DC;
+    border-radius: 50%;
+}
+
+.action-bar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* ==========================================================================
+   FEEDBACK OVERLAY (VISUAL FEEDBACK UNTUK TULI)
+   ========================================================================== */
+.feedback-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    border-radius: var(--border-radius);
+    animation: fadeIn 0.2s ease;
+}
+
+.feedback-overlay.hidden { display: none; }
+
+.feedback-card {
+    background-color: var(--card-bg);
+    padding: 24px;
+    border-radius: 24px;
+    width: 85%;
+    max-width: 380px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: var(--shadow);
+}
+
+.feedback-card.correct { background-color: var(--success-bg); border: 4px solid var(--success); }
+.feedback-card.wrong { background-color: var(--error-bg); border: 4px solid var(--error); }
+
+.feedback-icon { font-size: 72px; margin-bottom: 8px; }
+.feedback-text { font-size: 32px; font-weight: bold; margin-bottom: 6px; }
+.feedback-subtext { font-size: 18px; color: #455A64; margin-bottom: 16px; }
+
+.feedback-card.correct .feedback-text { color: var(--success); }
+.feedback-card.wrong .feedback-text { color: var(--error); }
+
+/* ==========================================================================
+   HALAMAN HASIL & SKOR
+   ========================================================================== */
+.motivation-badge {
+    background-color: #FFF9C4;
+    border: 2px solid #FBC02D;
+    padding: 16px;
+    border-radius: 16px;
+    margin-bottom: 16px;
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+#motivation-icon { font-size: 36px; }
+#motivation-text { font-size: 20px; font-weight: bold; color: #F57F17; }
+
+.result-card {
+    width: 100%;
+    max-width: 480px;
+    background-color: #FAFAFA;
+    border: 2px solid #CFD8DC;
+    border-radius: 20px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.result-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    border-radius: 12px;
+    background-color: #FFFFFF;
+}
+
+.result-row.blue { background-color: #E1F5FE; }
+.result-row.green { background-color: var(--success-bg); }
+.result-row.orange { background-color: #FFF3E0; }
+.result-row.purple { background-color: #F3E5F5; }
+
+.result-label { font-size: 20px; font-weight: bold; }
+.result-value { font-size: 22px; font-weight: bold; color: var(--primary-dark); }
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (HP, Tablet, Laptop)
+   ========================================================================== */
+@media (max-width: 600px) {
+    .game-container { padding: 16px; min-height: 540px; }
+    h1 { font-size: 22px; }
+    h2 { font-size: 22px; }
+    p { font-size: 18px; }
+
+    .wagon { width: 56px; height: 60px; border-width: 2px; }
+    .wagon-number { font-size: 22px; }
+    
+    .btn { font-size: 18px; padding: 12px 24px; min-height: 50px; }
+    .btn-large { width: 100%; }
+
+
+
+}

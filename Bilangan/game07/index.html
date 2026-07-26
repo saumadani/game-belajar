@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duel Bilangan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Tombol Kembali yang Sudah Terisolasi Full Style -->
+<a href="../index.html" style="
+  position: fixed !important;
+  top: 15px !important;
+  left: 15px !important;
+  z-index: 999999 !important;
+  background-color: #ff4757 !important;
+  color: #ffffff !important;
+  padding: 10px 18px !important;
+  border-radius: 25px !important;
+  text-decoration: none !important;
+  font-family: 'Comic Sans MS', 'Fredoka', sans-serif !important;
+  font-weight: bold !important;
+  font-size: 14px !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+">🏠 Kembali ke Menu</a>
+
+</div>
+
+    <div class="game-container">
+
+        <!-- ================= 1. HALAMAN PEMBUKA ================= -->
+        <section id="screen-start" class="screen active">
+            <div class="header-banner">
+                <span class="badge-icon">⚔️</span>
+                <h1>Duel Bilangan</h1>
+            </div>
+            
+            <p class="subtitle">Ayo bandingkan dua bilangan! Tentukan mana yang lebih besar (&gt;), lebih kecil (&lt;), atau sama dengan (=)!</p>
+            
+            <!-- Ilustrasi Arena Duel Robot SVG -->
+            <div class="hero-illustration">
+                <svg viewBox="0 0 340 120" width="100%" height="120" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Kartu Robot Kiri -->
+                    <rect x="20" y="15" width="90" height="90" rx="16" fill="#0288D1" stroke="#01579B" stroke-width="3"/>
+                    <text x="65" y="55" font-size="16" font-weight="bold" fill="#FFF" text-anchor="middle">🤖 Kiri</text>
+                    <text x="65" y="85" font-size="28" font-weight="bold" fill="#FFF" text-anchor="middle">245</text>
+
+                    <!-- Simbol Duel Tengah -->
+                    <circle cx="170" cy="60" r="24" fill="#FF9800" stroke="#E65100" stroke-width="3"/>
+                    <text x="170" y="70" font-size="28" font-weight="bold" fill="#FFF" text-anchor="middle">&gt;</text>
+
+                    <!-- Kartu Robot Kanan -->
+                    <rect x="230" y="15" width="90" height="90" rx="16" fill="#4CAF50" stroke="#1B5E20" stroke-width="3"/>
+                    <text x="275" y="55" font-size="16" font-weight="bold" fill="#FFF" text-anchor="middle">🤖 Kanan</text>
+                    <text x="275" y="85" font-size="28" font-weight="bold" fill="#FFF" text-anchor="middle">178</text>
+                </svg>
+            </div>
+
+            <button id="btn-start" class="btn btn-primary btn-large">
+                <span class="btn-icon">🚀</span> MULAI DUEL
+            </button>
+        </section>
+
+        <!-- ================= 2. HALAMAN PETUNJUK ================= -->
+        <section id="screen-instructions" class="screen">
+            <h2>📜 Petunjuk Bermain</h2>
+            
+            <div class="instruction-list">
+                <div class="instruction-item">
+                    <span class="step-num">1</span>
+                    <p>Perhatikan dua kartu angka yang sedang duel di layar. 👁️</p>
+                </div>
+                <div class="instruction-item">
+                    <span class="step-num">2</span>
+                    <p>Bandingkan nilainya dan pilih tombol simbol yang benar: <br>
+                       <b>&gt;</b> (Lebih Besar) | <b>&lt;</b> (Lebih Kecil) | <b>=</b> (Sama Dengan)
+                    </p>
+                </div>
+                <div class="instruction-item">
+                    <span class="step-num">3</span>
+                    <p>Jika salah, tombol akan berwarna merah. Kamu bisa mencoba lagi! 🔄</p>
+                </div>
+            </div>
+
+            <button id="btn-play" class="btn btn-success btn-large">
+                <span class="btn-icon">PLAY</span> SIAP MAIN!
+            </button>
+        </section>
+
+        <!-- ================= 3. HALAMAN PERMAINAN (ARENA DUEL) ================= -->
+        <section id="screen-game" class="screen">
+            
+            <!-- Top Bar: Progress Soal & Skor -->
+            <div class="info-bar">
+                <div class="info-card">
+                    <span class="info-label">Ronde</span>
+                    <span id="question-progress-text" class="info-value">1 / 10</span>
+                </div>
+                <div class="info-card">
+                    <span class="info-label">Skor</span>
+                    <span id="current-score" class="info-value">0</span>
+                </div>
+            </div>
+
+            <div class="progress-bar-container">
+                <div id="progress-bar-fill" class="progress-bar-fill"></div>
+            </div>
+
+            <div class="instruction-banner">
+                <p>Pilih simbol perbandingan yang tepat! ⚔️</p>
+            </div>
+
+            <!-- Arena Duel: Kartu Kiri VS Kartu Kanan -->
+            <div class="duel-arena">
+                <!-- Kartu Angka Kiri -->
+                <div id="card-left" class="duel-card card-left">
+                    <span class="fighter-avatar">🤖</span>
+                    <span id="num-left" class="duel-number">245</span>
+                </div>
+
+                <!-- Indikator Simbol Tempat Jawaban -->
+                <div id="symbol-vs-badge" class="symbol-vs-badge">
+                    <span id="vs-symbol-text">VS</span>
+                </div>
+
+                <!-- Kartu Angka Kanan -->
+                <div id="card-right" class="duel-card card-right">
+                    <span class="fighter-avatar">👾</span>
+                    <span id="num-right" class="duel-number">178</span>
+                </div>
+            </div>
+
+            <!-- Feedback Teks Visual Langsung -->
+            <div id="feedback-inline" class="feedback-inline hidden">
+                <span id="feedback-inline-icon">✅</span>
+                <span id="feedback-inline-text">Benar!</span>
+            </div>
+
+            <!-- Tiga Tombol Simbol Besar (>, <, =) -->
+            <div id="symbol-buttons-container" class="symbol-buttons-container">
+                <button class="btn-symbol" data-symbol=">">&gt;</button>
+                <button class="btn-symbol" data-symbol="<">&lt;</button>
+                <button class="btn-symbol" data-symbol="=">=</button>
+            </div>
+
+        </section>
+
+        <!-- ================= OVERLAY FEEDBACK VISUAL (KHUSUS TULI) ================= -->
+        <div id="feedback-overlay" class="feedback-overlay hidden">
+            <div id="feedback-card" class="feedback-card">
+                <div id="feedback-icon" class="feedback-icon">✔️</div>
+                <div id="feedback-text" class="feedback-text">Benar!</div>
+                <p id="feedback-subtext" class="feedback-subtext">Perbandingan angkamu sangat tepat!</p>
+                <button id="btn-feedback-action" class="btn btn-primary btn-large">
+                    RONDE BERIKUTNYA ➔
+                </button>
+            </div>
+        </div>
+
+        <!-- ================= 4. HALAMAN HASIL ================= -->
+        <section id="screen-result" class="screen">
+            <h2>🎉 Duel Selesai! 🎉</h2>
+            
+            <div id="motivation-badge" class="motivation-badge">
+                <span id="motivation-icon">🏆</span>
+                <p id="motivation-text">Hebat! Kamu Juara Duel!</p>
+            </div>
+
+            <!-- Rincian Evaluasi Skor -->
+            <div class="result-card">
+                <div class="result-row blue">
+                    <span class="result-label">Total Skor</span>
+                    <span id="final-score" class="result-value">100</span>
+                </div>
+                <div class="result-row green">
+                    <span class="result-label">✔️ Tepat Pertama Coba</span>
+                    <span id="final-correct" class="result-value">10 / 10</span>
+                </div>
+                <div class="result-row red">
+                    <span class="result-label">✖️ Percobaan Ulang</span>
+                    <span id="final-wrong" class="result-value">0</span>
+                </div>
+                <div class="result-row yellow">
+                    <span class="result-label">📊 Keberhasilan</span>
+                    <span id="final-percentage" class="result-value">100%</span>
+                </div>
+            </div>
+
+            <button id="btn-restart" class="btn btn-warning btn-large">
+                <span class="btn-icon">🔄</span> MAIN LAGI
+            </button>
+            <button id="btn-home" class="btn btn-primary btn-large">
+                <span class="btn-icon">🏠</span> MENU UTAMA
+            </button>
+        </section>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "name": "Game Edukasi Bilangan",
+  "short_name": "Bilangan",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#a8edf7",
+  "theme_color": "#a8edf7",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3082/3082060.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
